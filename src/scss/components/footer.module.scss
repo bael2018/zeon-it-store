@@ -1,0 +1,88 @@
+@import '../variables.scss';
+
+.footer{
+    background: $app-footer-background;
+    height: 235px;
+    box-sizing: border-box;
+
+    &__container{
+        max-width: $app-container-width;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+    
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__logo{
+            display: flex;
+            justify-content: space-between;
+            width: 40%;
+
+            div{
+                img{
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &__links{
+            display: flex;
+            width: 48%;
+            box-sizing: border-box;
+            padding-right: 50px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__list{
+            ul{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+
+                h4{
+                    margin: 0;
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: #E2E2E2;
+                    margin-bottom: 17px;
+                }
+
+                li{
+                    margin-bottom: 12px;
+
+                    a{      
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 17px;
+                        text-decoration: none;
+                        color: #FFFFFF;
+                        display: flex;
+                        align-items: center;
+
+                        svg{
+                            margin-right: 7px;
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+    
+            }
+        }
+    }
+
+    &__lower{
+        margin-top: 15px;
+        
+        p{
+            margin: 0;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            color: #B9B9B9;
+        }
+    }
+}

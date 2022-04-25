@@ -1,0 +1,16 @@
+.wish{
+    &__total{
+        margin: 0;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #979797;
+        margin-bottom: 15px;
+    }
+
+    &__wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6%;
+    }
+}

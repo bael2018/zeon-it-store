@@ -1,0 +1,82 @@
+@import '../../variables.scss';
+
+.navbarContent{
+    max-width: $app-container-width;
+    margin: 0 auto;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        cursor: pointer;
+    }
+
+    &__links{
+        display: flex;
+        align-items: center;
+
+        &_cart{
+            a{
+                &:nth-child(2){
+                    &::after{
+                        display: block !important;
+                    }
+                }
+            }
+        }
+
+        &_heart{
+            a{
+                &:nth-child(1){
+                    &::after{
+                        display: block !important;
+                    }
+                }
+            }
+        }
+
+        a{
+            margin-left: 25px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            position: relative;
+            color: #393939;
+
+            &::after{
+                border-radius: 50%;
+                content: '';
+                position: absolute;
+                width: 9px;
+                height: 9px;
+                left: 10px;
+                display: none;
+                top: 0px;
+                background: #E5271B;
+            }
+            
+            svg{
+                margin-right: 10px;
+                transform: scale(1.4);
+            }
+
+            &:nth-child(1){
+                margin-left: 0;
+                margin-right: 20px;
+            }
+
+            &:nth-child(1)::before{
+                content: '';
+                position: absolute;
+                pointer-events: none;
+                right: -20px;
+                height: 100%;
+                width: 1px;
+                background: #D3D3D3;
+            }
+        }
+    }
+}

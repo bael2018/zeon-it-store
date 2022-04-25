@@ -1,0 +1,36 @@
+.product-carousel{
+    width: 95%;
+    z-index: 14;
+    height: 130px;
+    left: 2.5%;
+    bottom: 14px;
+    position: absolute;
+
+    .image{
+        width: 100%;
+        height: 90%;
+
+            img{
+                height: 100%;
+                width: 100%;
+            }
+    }
+
+    .active-image{
+        border: 1px solid #bebebe;
+    }
+}
+
+.swiper{
+    height: 100%;
+}
+
+.swiper-scrollbar{
+    background: none !important;
+    bottom: -2px !important;
+}
+
+.swiper-scrollbar-drag{
+    background: white !important;
+    height: 3px !important;
+}

@@ -1,0 +1,36 @@
+.success{
+    padding: 28px 24px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 328px;
+    
+    img{
+        margin-bottom: 15px;
+    }
+
+    h4{
+        font-weight: 500;
+        font-size: 22px;
+        margin: 0;
+        line-height: 100%;
+        color: #393939;
+    }
+
+    p{
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 150%;
+        color: #393939;
+        margin: 15px 0;
+    }
+
+    button{
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: white;
+        padding: 14px 20px 13px;
+        background: #1D1D1B;
+        width: 100%;
+    }
+}

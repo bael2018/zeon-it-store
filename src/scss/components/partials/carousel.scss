@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+.swiper-pagination-bullet{
+    background: white !important;
+    border: 1px solid rgba(29, 29, 27, 0.3);
+    opacity: 1 !important;
+}
+
+.swiper{
+    overflow-x: hidden !important;
+}
+
+.swiper-slide{
+    padding-bottom: 20px !important;
+}
+
+.swiper-pagination{
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+.swiper-pagination-bullet-active{
+    background: $app-footer-background !important;
+}
+
+.main-carousel{
+    height: 488px;
+    width: 100%;
+    margin-bottom: 50px;
+
+    .image{
+        height: 100%;
+
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

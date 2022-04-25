@@ -1,0 +1,48 @@
+.helpItem{
+    position: relative;
+    margin-bottom: 15px;
+    background: white;
+
+    &__title{
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 15px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        p{
+            margin: 0;
+            width: 80%;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            color: #393939;
+        }
+
+        span{
+            svg{
+                transform: scale(1.3);
+            }
+        }
+
+        &_active{
+            transform: rotate(180deg) translateY(2px);
+        }
+    }
+
+    &__content{
+        box-sizing: border-box;
+        padding: 15px;
+        padding-top: 0px;
+        font-weight: 300;
+        display: none;
+        font-size: 14px;
+        line-height: 160%;
+        color: #354455;
+
+        &_active{
+            display: block;
+        }
+    }
+}

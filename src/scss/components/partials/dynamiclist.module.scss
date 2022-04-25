@@ -1,0 +1,10 @@
+.dynamic{
+    text-align: center;
+    margin-top: 30px;
+
+    &__list{
+        justify-content: space-between;
+        flex-wrap: wrap;
+        display: flex;
+    }
+}

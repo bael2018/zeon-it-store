@@ -1,0 +1,146 @@
+.productItem{
+    width: 24.5%;
+    margin-bottom: 6px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+
+    &_multy{
+        width: 19.5%;
+
+        .productItem__images{
+            img{
+                height: 332px;
+            }
+        }
+    }
+
+    &:hover &__heart{
+        display: block;
+    }
+
+    &__heart{
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        color: white;
+        height: 30px;
+        cursor: pointer;
+        font-size: 30px;
+        display: none;
+        z-index: 2;
+
+        &_visible{
+            display: block;
+        }
+
+        .active{
+            color: #E5271B;
+        }
+    }
+
+    &__discount{
+        position: absolute;
+        background: #E5271B;
+        left: -45px;
+        top: -50px;
+        color: white;
+        width: 85px;
+        height: 85px;
+        pointer-events: none;
+        padding-bottom: 7px;
+        justify-content: center;
+        transform: rotate(-45deg);
+        display: flex;
+        z-index: 2;
+        align-items: flex-end;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        text-transform: uppercase;
+    }
+
+    &__images{
+        img{
+            width: 100%;
+            object-fit: cover;
+            height: 437px;
+        }
+    }
+
+    &__info{
+        background: white;
+        box-sizing: border-box;
+        padding: 10px;
+
+        >div{
+            align-items: center;
+            display: flex;
+
+            .active{
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 16px;
+                text-decoration-line: line-through;
+                color: #979797;
+                margin-right: 10px;
+            }
+        }
+
+        h5{
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17px;
+            color: #393939;
+            overflow: hidden;
+            height: 18px;
+        }
+
+        p{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            margin: 6px 0;
+            margin-bottom: 3px;
+            color: #393939;
+        }
+
+        span {
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 16px;
+            color: #7C7C7C;
+        }
+
+        &__colors{
+            display: flex;
+            margin-top: 10px;
+            position: relative;
+
+            div{
+                opacity: 0.47;
+                width: 9px;
+                height: 9px;
+                border-radius: 4px;
+                margin-right: 15px;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .activeColor{
+                &::before{
+                    content: '';
+                    position: absolute;
+                    width: 160%;
+                    height: 160%;
+                    left: -40%;
+                    top: -40%;
+                    border: 1px solid rgb(170, 170, 170);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+    gap: 15px;
+
+    span{
+        padding: 12px;
+        width: 44px;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 44px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #979797;
+    }
+    
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    &__arrow{
+        &:last-child,
+        &:first-child{
+            color: #333333;
+        }
+    }
+
+    &_active{
+        background: #1D1D1B !important;
+        color: white !important;
+    }
+}

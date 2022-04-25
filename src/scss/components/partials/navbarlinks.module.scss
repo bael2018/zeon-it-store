@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+
+.navLinks{
+    height: 65px;
+    border-bottom: 1px solid #EEEEEE;
+
+    &__container{
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+        max-width: $app-container-width;
+        margin: 0 auto;
+    }
+
+    &__links{
+        a{
+            margin-right: 15px;
+        }
+    }
+
+    &__contact{
+        span{
+            font-size: 17px;
+            line-height: 21px;
+            color: #979797;
+
+            a{
+                text-decoration: none;
+                font-family: 'Montserrat';
+                font-size: 17px;
+                line-height: 21px;
+                color: #393939;
+            }
+        }
+    }
+}

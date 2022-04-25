@@ -1,0 +1,23 @@
+.redirect{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h4{
+        margin: 0;
+        font-size: 35px;
+        color: #393939;
+    }
+    
+    p{
+        color: #979797;
+        font-size: 20px;
+
+        span{
+            cursor: pointer;
+            color: rgb(0, 195, 255);
+        }
+    }
+}

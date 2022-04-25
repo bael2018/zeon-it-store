@@ -1,0 +1,10 @@
+.cartList{
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+
+        &__content{
+            width: 768px;
+        }
+    }
+}

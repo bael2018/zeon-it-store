@@ -1,0 +1,50 @@
+.about{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__images{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        div{
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            img{
+                margin: 0;
+            }
+        }
+
+        img{
+            width: 327px;
+            margin-left: 25px;
+            height: 412px;
+        }
+    }
+
+    &__text{
+        width: 39.5%;
+
+        div{
+            background: white;
+            box-sizing: border-box;
+            padding: 15px 25px;
+
+            span{
+                font-weight: 500;
+                font-size: 24px;
+                color: #393939;
+            }
+
+            p{
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 160%;
+                color: #979797;
+            }
+        }
+    }
+}

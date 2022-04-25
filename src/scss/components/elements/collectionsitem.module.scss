@@ -1,0 +1,54 @@
+@import '../../variables.scss';
+
+.collectionItem{
+    margin-bottom: 7px;
+    width: 24.5%;
+
+    &__image{
+        position: relative;
+        height: 330px;
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+        p{
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            text-align: center;
+            padding: 0;
+            color: white;
+            width: 100%;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 18px;
+        }
+    }
+
+    &__link{
+        cursor: pointer;
+        height: 44px;
+        box-sizing: border-box;
+        padding: 12px;
+        background: $app-footer-background;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+
+        svg{
+            margin-left: 10px;
+            transform: scale(1.5);
+        }
+
+        &:hover{
+            background: white;
+            color: $app-footer-background;
+        }
+    }
+}

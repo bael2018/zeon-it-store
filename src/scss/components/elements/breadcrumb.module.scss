@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+
+.bread{
+    border-top: 1px solid #EEEEEE; 
+    height: 60px;
+    display: flex;
+    align-items: center;
+
+    &__wrapper{
+        width: $app-container-width;
+        margin: 0 auto;
+
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            
+            li{
+                margin-right: 13px;
+                font-family: 'Montserrat';
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: #393939;
+                cursor: pointer;
+
+                span{
+                    margin-right: 10px;
+                    color: #393939;
+                }
+            }
+        }
+
+        &_active{
+            color: #979797 !important;
+            cursor: text !important;
+        }
+    }
+}

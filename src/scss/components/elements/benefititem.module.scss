@@ -1,0 +1,30 @@
+.benefitItem{
+    background: white;
+    width: 24%;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.02);
+    padding: 24px 12px;
+    text-align: center;
+    box-sizing: border-box;
+
+    div{
+        margin-top: 20px;
+
+        h5{
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            margin: 0;
+            color: #393939;
+        }
+
+        p{
+            margin: 0;
+            margin-top: 10px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 175%;
+            letter-spacing: 0.04em;
+            color: #979797;
+        }
+    }
+}

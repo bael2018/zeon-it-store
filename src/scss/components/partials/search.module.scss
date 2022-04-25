@@ -1,0 +1,101 @@
+@import '../../variables.scss';
+
+.search{
+    height: 44px;
+    width: 662px;
+    background: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0 15px;
+
+    input{
+        width: 90%;
+        position: absolute;
+        box-sizing: border-box;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        color: $app-footer-background;
+        
+        &::placeholder{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            font-family: 'Montserrat', sans-serif;
+            color: #858F9B;
+        }
+    }
+
+    svg{
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 22px;
+    }
+
+    &__result{
+        position: absolute;
+        width: 100%;
+        background: #FFFFFF;
+        border-top: none;
+        border: 1px solid #D3D3D3;
+        box-sizing: border-box;
+        box-shadow: 0px 24px 24px #0000000a;
+        border-radius: 4px;
+        left: 0;
+        top: 42px;
+        z-index: 3;
+        padding: 0 10px;
+        max-height: 250px;
+
+        &::before{
+            content: '';
+            position: absolute;
+            height: 3px;
+            right: 2.5%;
+            bottom: 3px;
+            width: 95%;
+            background: white;
+        }
+
+        div{
+            overflow-y: scroll;
+            max-height: 240px;
+            margin: 5px 0;
+
+            h4{
+                text-align: center;
+                margin: 20px 0;
+                color: $app-footer-background;
+                font-weight: 500;
+            }
+
+            p{
+                margin: 0 6px;
+                padding: 15px 0;
+                cursor: pointer;
+                border-bottom: 1px solid #EEEEEE;
+                font-family: 'Montserrat';
+                font-weight: 400;
+                font-size: 14px;
+                color: $app-footer-background;
+            }
+
+            &::-webkit-scrollbar{
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb{
+                background: grey;
+                border-radius: 10px;
+            }
+        }
+
+        &_disabled{
+            display: none;
+        }
+    }
+}

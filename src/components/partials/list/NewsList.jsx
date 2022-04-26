@@ -1,14 +1,14 @@
 import { setIsFetching } from "../../../store/reducers/newsReducer";
 import { news_saga_action } from "../../../store/sagas/newsSaga";
-import { useDispatch, useSelector } from "react-redux";
-import newImage from "../../../assets/img/newsImage.png";
-import ContentLayout from "../../layouts/ContentLayout";
-import NewsItem from "../../elements/NewsItem";
-import { useEffect } from "react";
-import Loader from "../../elements/ui/Loader";
 import Description from "../../elements/custom/Description";
+import ContentLayout from "../../layouts/ContentLayout";
 import { appLinks } from "../../../constants/appLinks";
+import { useDispatch, useSelector } from "react-redux";
 import Empty from "../../elements/custom/Empty";
+import NewsItem from "../../elements/NewsItem";
+import Loader from "../../elements/ui/Loader";
+import Error from "../../../pages/Error";
+import { useEffect } from "react";
 
 const NewsList = () => {
     const { data, status, error, isFetching } = useSelector(
@@ -30,8 +30,6 @@ const NewsList = () => {
         };
     }, []);
 
-    console.log(data);
-
     function scrollHandler(e) {
         const scrollHeight = e.target.documentElement.scrollHeight;
         const scrollTop = e.target.documentElement.scrollTop;
@@ -42,22 +40,26 @@ const NewsList = () => {
         }
     }
 
-    return (
-        <ContentLayout>
-            <Description text={appLinks.NEWS} />
-            <div>
-                {status ? (
-                    <Loader />
-                ) : data.length ? (
-                    data.map((item) => (
-                        <NewsItem key={item.id} image={newImage} {...item} />
-                    ))
-                ) : (
-                    <Empty>На данный момент новостей нет!</Empty>
-                )}
-            </div>
-        </ContentLayout>
-    );
+    if(error){
+        return <Error status={error}/>
+    }else{
+        return (
+            <ContentLayout>
+                <Description text={appLinks.NEWS} />
+                <div>
+                    {status ? (
+                        <Loader />
+                    ) : data.length ? (
+                        data.map((item) => (
+                            <NewsItem key={item.id} {...item} />
+                        ))
+                    ) : (
+                        <Empty>На данный момент новостей нет!</Empty>
+                    )}
+                </div>
+            </ContentLayout>
+        );
+    }
 };
 
 export default NewsList;

@@ -1,7 +1,9 @@
 import FixedMessage from "../partials/FixedMessage";
+import MobileNavbar from "../shared/MobileNavbar";
 import Modal from "../elements/custom/Modal";
 import Loader from "../elements/ui/Loader";
 import { Outlet } from "react-router-dom";
+import Sidebar from "../shared/Sidebar";
 import { lazy, Suspense } from "react";
 import Navbar from "../shared/Navbar";
 import "../../scss/style.scss";
@@ -11,7 +13,9 @@ const Footer = lazy(() => import("../shared/Footer"));
 const AppLayout = () => {
     return (
         <div className="root">
+            <MobileNavbar/>
             <Navbar />
+            <Sidebar/>
             <FixedMessage />
             <Modal/>
             <div className="container">

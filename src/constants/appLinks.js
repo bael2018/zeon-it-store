@@ -8,5 +8,6 @@ export const appLinks = {
     NEWS: "Новости",
     SEARCH: "Поиск",
     REDIRECT: "Пуста",
-    WISHLIST: "Избранное"
+    WISHLIST: "Избранное",
+    ERROR: "Ошибка"
 }

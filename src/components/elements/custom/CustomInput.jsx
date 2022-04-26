@@ -8,10 +8,11 @@ const CustomInput = ({
     type,
     value,
     onChange,
+    isOk,
     phone = false,
 }) => {
     return (
-        <div className={cls.input}>
+        <div className={`${cls.input} ${isOk === 'invalid' && cls.input_invalid}`}>
             <span>{title}</span>
             <div className={`${phone && cls.input__wrapper}`}>
                 {phone && (

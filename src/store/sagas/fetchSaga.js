@@ -24,7 +24,7 @@ function* fetchWorker({ query }) {
         const response = yield call(asyncRequest.bind(null, url, limit, search));
         yield put(fetchFulfilled({ data: response }));
     } catch (error) {
-        yield put(fetchRejected({ error: error.message }));
+        yield put(fetchRejected({ error: error.response.status }));
     }
 }
 

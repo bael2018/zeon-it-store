@@ -15,7 +15,6 @@ import { useState } from "react";
 const ProductItem = ({ data = {}, styles = false }) => {
     const { wishes } = useSelector((state) => state.wishes);
     const [colorActive, setColorActive] = useState("");
-    const [imageActive, setImageActive] = useState("");
     const [view, setView] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -28,21 +27,8 @@ const ProductItem = ({ data = {}, styles = false }) => {
         collection,
         id,
         productImages,
-        isWish
+        isWish,
     } = data;
-
-    const imageData = [
-        {
-            id: 1,
-            picture:
-                "https://www.freddy.com/media/catalog/product/cache/22d8158d6986fded198295ee6d841327/P/P/PPANT247F0A_Z101_-_021615827137000.jpg",
-        },
-        {
-            id: 2,
-            picture:
-                "https://luxuryoutletonline.eu/9953-large_default_new/gianni-kavanagh-khaki-regular-fit-cargo-pants.jpg",
-        },
-    ];
 
     const wishlistHandler = (e) => {
         e.stopPropagation();
@@ -87,7 +73,11 @@ const ProductItem = ({ data = {}, styles = false }) => {
                     {mathProcent(previousPrice, currentPrice)}%
                 </div>
             )}
-            <div className={`${cls.productItem__heart} ${isWish && cls.productItem__heart_visible}`}>
+            <div
+                className={`${cls.productItem__heart} ${
+                    isWish && cls.productItem__heart_visible
+                }`}
+            >
                 {isIncluded ? (
                     <span onClick={deleteItemHandler} className={cls.active}>
                         <FaHeart />
@@ -102,19 +92,14 @@ const ProductItem = ({ data = {}, styles = false }) => {
                 style={{ position: "relative" }}
                 className={cls.productItem__images}
             >
-                <img
-                    src={
-                        imageActive === ""
-                            ? productImages && productImages[0].image
-                            : imageActive
-                    }
-                    alt="productPic"
-                />
-                {view && productImages?.length > 1 && (
+                {view && productImages?.length > 1 ? (
                     <ProductCarousel
                         data={productImages}
-                        activeImage={imageActive}
-                        change={setImageActive}
+                    />
+                ) : (
+                    <img
+                        src={productImages && productImages[0].image}
+                        alt="productPic"
                     />
                 )}
             </div>
@@ -140,7 +125,7 @@ const ProductItem = ({ data = {}, styles = false }) => {
                             ></div>
                         ))
                     ) : (
-                        <h4>empty colors</h4>
+                        <span>Цветов нет!</span>
                     )}
                 </div>
             </div>

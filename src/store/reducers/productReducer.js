@@ -4,7 +4,8 @@ const initialState = {
     data: [],
     status: false,
     error: null,
-    totalCount: 0
+    totalCount: 0,
+    zoomImage: "",
 };
 
 const productReducer = createSlice({
@@ -22,11 +23,19 @@ const productReducer = createSlice({
             state.error = action.payload.error;
         },
         setProductCount: (state, action) => {
-            state.totalCount = action.payload.total
-        }
+            state.totalCount = action.payload.total;
+        },
+        setZoomImage: (state, action) => {
+            state.zoomImage = action.payload.image;
+        },
     },
 });
 
-export const { productPending, productFulfilled, productRejected, setProductCount } =
-    productReducer.actions;
+export const {
+    productPending,
+    productFulfilled,
+    productRejected,
+    setProductCount,
+    setZoomImage,
+} = productReducer.actions;
 export default productReducer.reducer;

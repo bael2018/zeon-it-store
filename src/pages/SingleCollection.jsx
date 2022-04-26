@@ -10,9 +10,11 @@ import { useBreads } from "../hooks/useBreads";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { paths } from "../constants/paths";
+import Error from "./Error";
+import { endpoints } from "../constants/init";
 
 const SingleCollection = () => {
-    const { status, totalCount } = useSelector((state) => state.product);
+    const { status, totalCount, error } = useSelector((state) => state.product);
     const { title } = useParams();
     const { dispatcher } = useBreads([
         { title: appLinks.COLLECTIONS, url: paths.COLLECTIONS },
@@ -39,18 +41,24 @@ const SingleCollection = () => {
 
     return (
         <ContentLayout>
-            <Description text={title} />
-            <ProductList
-                empty="На данный момент коллекции нет!"
-                params={{ url: "products", search: title, limit, page }}
-            />
-            {!status && totalCount > limit && (
-                <PagePagination query={paginationQuery} />
+            {error ? (
+                <Error status={error} />
+            ) : (
+                <>
+                    <Description text={title} />
+                    <ProductList
+                        empty="На данный момент коллекции нет!"
+                        params={{ url: endpoints.PRODUCTS, search: title, limit, page }}
+                    />
+                    {!status && totalCount > limit && (
+                        <PagePagination query={paginationQuery} />
+                    )}
+                </>
             )}
             <SimiliarProducts
                 limit={5}
-                url='products'
-                search='Новинки'
+                url={endpoints.PRODUCTS}
+                search="Новинки"
                 description="Новинки"
                 empty="На данный момент товаров нет!"
             />

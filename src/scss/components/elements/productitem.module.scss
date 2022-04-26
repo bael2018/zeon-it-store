@@ -10,9 +10,7 @@
         width: 19.5%;
 
         .productItem__images{
-            img{
-                height: 332px;
-            }
+            height: 332px;
         }
     }
 
@@ -25,9 +23,9 @@
         right: 13px;
         top: 13px;
         color: white;
-        height: 30px;
+        height: 28px;
         cursor: pointer;
-        font-size: 30px;
+        font-size: 28px;
         display: none;
         z-index: 2;
 
@@ -43,8 +41,8 @@
     &__discount{
         position: absolute;
         background: #E5271B;
-        left: -45px;
-        top: -50px;
+        left: -47.5px;
+        top: -52.5px;
         color: white;
         width: 85px;
         height: 85px;
@@ -62,10 +60,12 @@
     }
 
     &__images{
+        height: 437px;
+        
         img{
             width: 100%;
             object-fit: cover;
-            height: 437px;
+            height: 100%;
         }
     }
 

@@ -1,6 +1,16 @@
 .input{
     margin-bottom: 10px;
 
+    &_invalid{
+        >span{
+            color: #E5271B !important;
+        }
+
+        div{
+            border: 1px solid #E5271B !important;
+        }
+    }
+
     >span{
         font-weight: 500;
         font-size: 13px;

@@ -4,6 +4,10 @@
     height: 65px;
     border-bottom: 1px solid #EEEEEE;
 
+    @media screen and (max-width: 900px){
+        display: none;
+    }
+
     &__container{
         display: flex;
         height: 100%;
@@ -11,6 +15,10 @@
         justify-content: space-between;
         max-width: $app-container-width;
         margin: 0 auto;
+
+        @media screen and (max-width: 1250px){
+            max-width: 90%;
+        }
     }
 
     &__links{

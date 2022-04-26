@@ -1,8 +1,8 @@
 import RedirectContent from "../components/partials/RedirectContent";
+import ContentLayout from "../components/layouts/ContentLayout";
 import { appLinks } from "../constants/appLinks";
 import { useBreads } from "../hooks/useBreads";
 import { useEffect } from "react";
-import ContentLayout from "../components/layouts/ContentLayout";
 
 const Redirect = () => {
     const { dispatcher } = useBreads([{ title: appLinks.REDIRECT }]);

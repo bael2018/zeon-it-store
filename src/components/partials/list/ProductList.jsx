@@ -7,7 +7,7 @@ import Loader from "../../elements/ui/Loader";
 import { useEffect } from "react";
 
 const ProductList = ({ empty, params: { url, limit, page, search } }) => {
-    const { data, status, error } = useSelector((state) => state.product);
+    const { data, status } = useSelector((state) => state.product);
     const { isSearched } = useSelector(state => state.search)
     const dispatch = useDispatch();
 

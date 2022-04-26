@@ -7,6 +7,7 @@ import Empty from "../../elements/custom/Empty";
 import HelpItem from "../../elements/HelpItem";
 import Loader from "../../elements/ui/Loader";
 import { useEffect, useState } from "react";
+import Error from "../../../pages/Error";
 
 const HelpList = () => {
     const { data, status, error } = useSelector((state) => state.fetch);
@@ -17,30 +18,34 @@ const HelpList = () => {
         dispatch(fetch_saga_action({ limit: 5, url: 'help' }));
     }, []);
 
-    return (
-        <div className={cls.help}>
-            {!status && <img src={data.helpImage} alt="картина помощи" />}
-
-            <div className={cls.help__list}>
-                <Description text={appLinks.HELP} />
-
-                {status ? (
-                    <Loader />
-                ) : data.body?.length ? (
-                    data.body?.map((help, index) => (
-                        <HelpItem
-                            active={active}
-                            callback={setActive}
-                            key={index}
-                            {...help}
-                        />
-                    ))
-                ) : (
-                    <Empty>На данный момент ответов нет!</Empty>
-                )}
+    if(error){
+        return <Error status={error}/>
+    }else{
+        return (
+            <div className={cls.help}>
+                {!status && <img src={data.helpImage} alt="картина помощи" />}
+    
+                <div className={cls.help__list}>
+                    <Description text={appLinks.HELP} />
+    
+                    {status ? (
+                        <Loader />
+                    ) : data.body?.length ? (
+                        data.body?.map((help, index) => (
+                            <HelpItem
+                                active={active}
+                                callback={setActive}
+                                key={index}
+                                {...help}
+                            />
+                        ))
+                    ) : (
+                        <Empty>На данный момент ответов нет!</Empty>
+                    )}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default HelpList;

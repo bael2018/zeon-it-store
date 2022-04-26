@@ -8,14 +8,14 @@ import {
 } from "../reducers/bestsellerReducer";
 import axios from "axios";
 import { paths } from "../../constants/paths";
-import { API_URL } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 
 export const BESTSELLER_SAGA = "BESTSELLER_SAGA";
 const limit = 8;
 
 const asyncRequest = async (page) => {
     const response = await axios.get(
-        `${API_URL}products?status_like=Хит продаж&_limit=${limit}&_page=${page}`
+        `${API_URL}${endpoints.PRODUCTS}?status_like=Хит продаж&_limit=${limit}&_page=${page}`
     );
     return await response;
 };
@@ -41,7 +41,7 @@ function* bestsellerWorker({ query }) {
             yield put(bestsellerFinished({ finished: true }));
         }
     } catch (error) {
-        yield put(bestsellerRejected({ error: error.message }));
+        yield put(bestsellerRejected({ error: error.response.status }));
     }
 }
 

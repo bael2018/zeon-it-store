@@ -8,6 +8,14 @@
     align-items: center;
     justify-content: space-between;
 
+    @media screen and (max-width: 1250px){
+        max-width: 90%;
+    }
+
+    @media screen and (max-width: 900px){
+        display: none;
+    }
+
     img{
         cursor: pointer;
     }

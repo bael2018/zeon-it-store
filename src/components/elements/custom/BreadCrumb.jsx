@@ -25,12 +25,12 @@ const BreadCrumb = () => {
                         <li onClick={() => pushHandler(paths.MAIN)}>
                             {appLinks.MAIN}
                         </li>
-                        {breads?.map(({ url, title }, index) => {
+                        {breads?.map(({ url, title }) => {
                             if (!url) {
                                 return (
                                     <li
                                         className={cls.bread__wrapper_active}
-                                        key={index}
+                                        key={url}
                                     >
                                         <span>/</span> {title}
                                     </li>

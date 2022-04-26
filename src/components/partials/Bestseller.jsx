@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import DynamicList from "./list/DynamicList";
 import LoadBtn from "../elements/LoadBtn";
 import ProductItem from "../elements/ProductItem";
+import Error from "../../pages/Error";
 
 const Bestseller = () => {
     const body = useSelector((state) => state.best);
@@ -22,17 +23,21 @@ const Bestseller = () => {
         dispatch(bestseller_saga_action(location.pathname));
     }, [body.page]);
 
-    return (
-        <>
-            <DynamicList
-                empty="Ничего нет"
-                description="Хит продаж"
-                params={body}
-                element={(data) => <ProductItem key={data.id} data={data} />}
-            />
-            {!body.isFinished && <LoadBtn loadData={loadData} />}
-        </>
-    );
+    if(body.error){
+        return <Error status={body.error}/>
+    }else{
+        return (
+            <>
+                <DynamicList
+                    empty="Ничего нет"
+                    description="Хит продаж"
+                    params={body}
+                    element={(data) => <ProductItem key={data.id} data={data} />}
+                />
+                {!body.isFinished && <LoadBtn loadData={loadData} />}
+            </>
+        );
+    }
 };
 
 export default Bestseller;

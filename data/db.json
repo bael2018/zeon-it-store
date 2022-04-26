@@ -775,6 +775,7 @@
       "mainCarousel": [
         {
           "id": 1,
+          "url": "https://kg.wildberries.ru/",
           "image": "https://i.ibb.co/JrnRDsq/carousel.png"
         },
         {
@@ -831,21 +832,21 @@
       "id": 1
     },
     {
-      "userName": "впцук",
-      "userSecondName": "dfdf",
-      "userEmail": "sdfs@gmail.com",
-      "userPhone": "708455445",
-      "userCountry": "sdf",
-      "userCity": "wer",
+      "userName": "Michael",
+      "userSecondName": "Jackson",
+      "userEmail": "popking@gmail.com",
+      "userPhone": "555555553",
+      "userCountry": "USA",
+      "userCity": "California",
       "id": 2
     },
     {
-      "userName": "sdf",
-      "userSecondName": "wer",
-      "userEmail": "example@gmail.com",
-      "userPhone": "708454545",
-      "userCountry": "wer",
-      "userCity": "dfg",
+      "userName": "Привет",
+      "userSecondName": "ыва",
+      "userEmail": "osh.kg@gmail.com",
+      "userPhone": "550 65 56 65",
+      "userCountry": "df",
+      "userCity": "er",
       "id": 3
     }
   ],

@@ -5,6 +5,7 @@ const initialState = {
     status: false,
     error: null,
     isSearched: false,
+    isVisible: false,
 };
 
 const searchReducer = createSlice({
@@ -24,9 +25,17 @@ const searchReducer = createSlice({
         setIsSearched: (state) => {
             state.isSearched = !state.isSearched;
         },
+        setIsVisible: (state) => {
+            state.isVisible = !state.isVisible;
+        },
     },
 });
 
-export const { searchPending, searchFulfilled, searchRejected, setIsSearched } =
-    searchReducer.actions;
+export const {
+    searchPending,
+    searchFulfilled,
+    searchRejected,
+    setIsSearched,
+    setIsVisible,
+} = searchReducer.actions;
 export default searchReducer.reducer;

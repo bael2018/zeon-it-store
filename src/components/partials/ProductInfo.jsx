@@ -7,6 +7,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoBagOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { paths } from "../../constants/paths";
 
 const ProductInfo = ({ data = {} }) => {
     const { wishes } = useSelector((state) => state.wishes);
@@ -108,7 +109,7 @@ const ProductInfo = ({ data = {} }) => {
             </div>
             <div className={cls.productInfo__links}>
                 {isIncludedCart ? (
-                    <button onClick={() => navigate("/cart")}>
+                    <button onClick={() => navigate(paths.CART)}>
                         Перейти в корзину
                     </button>
                 ) : (

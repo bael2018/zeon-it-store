@@ -6,6 +6,7 @@ import { useBreads } from "../hooks/useBreads";
 import { useParams } from "react-router-dom";
 import { paths } from "../constants/paths";
 import { useEffect } from "react";
+import { endpoints } from "../constants/init";
 
 const SingleProduct = () => {
     const { title, id } = useParams();
@@ -26,7 +27,7 @@ const SingleProduct = () => {
             <SimiliarProducts
                 similiar={true}
                 limit={5}
-                url='products'
+                url={endpoints.PRODUCTS}
                 description="Похожие товары"
                 empty="На данный момент товаров нет!"
             />

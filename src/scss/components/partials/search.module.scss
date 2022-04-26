@@ -9,6 +9,72 @@
     position: relative;
     padding: 0 15px;
 
+    @media screen and (max-width: 1250px){
+        width: 600px;
+    }
+
+    @media screen and (max-width: 1200px){
+        width: 550px;
+
+        input{
+            width: 85% !important;
+        }
+    }
+
+    @media screen and (max-width: 1130px){
+        width: 500px;
+    }
+
+    @media screen and (max-width: 1080px){
+        width: 450px;
+    }
+
+    @media screen and (max-width: 1030px){
+        width: 400px;
+
+        input{
+            width: 80% !important;
+        }
+    }
+
+    @media screen and (max-width: 970px){
+        width: 350px;
+    }
+
+    @media screen and (max-width: 900px){
+        position: fixed;
+        width: 92%;
+        margin-top: 25px;
+
+        input{
+            width: 90% !important;
+        }
+    }
+
+    @media screen and (max-width: 720px){
+        input{
+            width: 85% !important;
+        }
+    }
+
+    @media screen and (max-width: 600px){
+        width: 88%;
+    }
+
+    @media screen and (max-width: 500px){
+        width: 90%;
+
+        input{
+            width: 80% !important;
+        }
+    }
+
+    @media screen and (max-width: 350px){
+        input{
+            width: 75% !important;
+        }
+    }
+
     input{
         width: 90%;
         position: absolute;

@@ -4,24 +4,27 @@ import message from "../../assets/img/fixedMessage.png";
 import { navbar_target } from "../../constants/init";
 import { useRequest } from "../../hooks/useRequest";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-import { memo, useEffect, useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 import arrow from "../../assets/img/arrowup.png";
+import { useLocation } from "react-router-dom";
+import { paths } from "../../constants/paths";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const FixedMessage = () => {
     const [active, setActive] = useState(false);
     const dispatch = useDispatch();
+    const location = useLocation();
 
-    const { data, status, error, fetching } = useRequest('get', "app");
+    const { data, fetching } = useRequest("get", "app");
 
     useEffect(() => {
         fetching();
     }, []);
 
     const phoneHandler = () => {
-        dispatch(setInitModal(false));
+        dispatch(setInitModal(''));
         dispatch(setIsModal(true));
         setActive(false);
     };
@@ -36,9 +39,11 @@ const FixedMessage = () => {
                         alt="arrowicon"
                     />
                 </a>
-                <span onClick={() => setActive(!active)}>
-                    <img src={message} alt="messageicon" />
-                </span>
+                {!location.pathname.includes(paths.CART) && (
+                    <span onClick={() => setActive(!active)}>
+                        <img src={message} alt="messageicon" />
+                    </span>
+                )}
             </div>
 
             <div
@@ -68,4 +73,4 @@ const FixedMessage = () => {
     );
 };
 
-export default memo(FixedMessage);
+export default FixedMessage;

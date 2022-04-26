@@ -28,6 +28,9 @@ const cartReducer = createSlice({
             );
             decrementItem.count = decrementItem.count - 1;
         },
+        clearCartProduct: (state) => {
+            state.carts = []
+        }
     },
 });
 
@@ -36,5 +39,6 @@ export const {
     deleteCartItem,
     decrementCartItem,
     incrementCartItem,
+    clearCartProduct
 } = cartReducer.actions;
 export default cartReducer.reducer;

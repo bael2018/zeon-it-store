@@ -5,6 +5,7 @@ import { appLinks } from "../constants/appLinks";
 import { useBreads } from "../hooks/useBreads";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { endpoints } from "../constants/init";
 
 const Wishlist = () => {
     const { dispatcher } = useBreads([{ title: appLinks.WISHLIST }]);
@@ -20,7 +21,8 @@ const Wishlist = () => {
             <WishlistProducts />
             {wishes.length === 0 && (
                 <SimiliarProducts
-                    url="products"
+                    recommened={true}
+                    url={endpoints.PRODUCTS}
                     limit={5}
                     description="Возможно Вас заинтересует"
                     empty="На данный момент товаров нет!"

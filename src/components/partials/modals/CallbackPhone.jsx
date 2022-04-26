@@ -15,18 +15,21 @@ const CallbackPhone = () => {
     const userPhone = useInput("");
     const dispatch = useDispatch()
 
-    const { data, error, fetching } = useRequest('post', "userInfo");
+    const { error, fetching } = useRequest('post', "userInfo");
 
-    const formHandler = (e) => {
+    const formHandler = async (e) => {
         e.preventDefault();
 
         const body = {
             userName: userName.value,
             userPhone: userPhone.value
         }
+
+        await fetching(body)
         
-        fetching(body)
-        if(data){
+        if(error){
+            alert(`Произошла ошибка статус ${error}`)
+        }else{
             dispatch(setSuccessModal(true));
             userName.clearValue();
             userPhone.clearValue();

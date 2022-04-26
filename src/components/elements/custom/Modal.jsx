@@ -1,5 +1,6 @@
 import cls from "../../../scss/components/elements/modal.module.scss";
 import CallbackPhone from "../../partials/modals/CallbackPhone";
+import ProductImage from "../../partials/modals/ProductImage";
 import SuccessInfo from "../../partials/modals/SuccessInfo";
 import OrderModal from "../../partials/modals/OrderModal";
 import { useSelector } from "react-redux";
@@ -14,10 +15,12 @@ const Modal = () => {
             <div className={cls.modal__wrapper}>
                 {successModal ? (
                     <SuccessInfo />
-                ) : !initModal ? (
-                    <CallbackPhone />
-                ) : (
+                ) : initModal === "order" ? (
                     <OrderModal />
+                ) : initModal === "zoom" ? (
+                    <ProductImage />
+                ) : (
+                    <CallbackPhone />
                 )}
             </div>
         </div>

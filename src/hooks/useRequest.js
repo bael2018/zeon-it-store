@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
 import { API_URL } from "../constants/init";
+import { useState } from "react";
 import axios from "axios";
 
 export const useRequest = (method, endpoint) => {
@@ -7,7 +7,7 @@ export const useRequest = (method, endpoint) => {
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
 
-    const fetching = useCallback(async (body = {}) => {
+    const fetching = async (body = {}) => {
         setStatus(true);
 
         try {
@@ -16,12 +16,12 @@ export const useRequest = (method, endpoint) => {
                     ? await axios.get(`${API_URL}${endpoint}`)
                     : await axios.post(`${API_URL}${endpoint}`, body);
             setData(response.data);
-        } catch (error) {
-            setError(error.message);
+        } catch ({ response }) {
+            setError(response.status);
         } finally {
             setStatus(false);
         }
-    }, []);
+    };
 
     return {
         status,

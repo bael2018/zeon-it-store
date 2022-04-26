@@ -2,15 +2,10 @@ import BreadCrumb from "../elements/custom/BreadCrumb";
 import NavbarContent from "../partials/NavbarContent";
 import { useRequest } from "../../hooks/useRequest";
 import NavbarLinks from "../partials/NavbarLinks";
-import { memo, useEffect } from "react";
+import { useEffect } from "react";
 
 const Navbar = () => {
-    const {
-        data,
-        status,
-        error,
-        fetching,
-    } = useRequest('get', "app");
+    const { data, fetching } = useRequest("get", "app");
 
     useEffect(() => {
         fetching();
@@ -25,4 +20,4 @@ const Navbar = () => {
     );
 };
 
-export default memo(Navbar);
+export default Navbar;

@@ -2,6 +2,7 @@ import { setInitModal, setIsModal } from "../../store/reducers/modalReducer";
 import cls from "../../scss/components/partials/cartcontent.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
+    mathTotalCount,
     mathTotalPrice,
     totalDiscountPrice,
     totalPrice,
@@ -12,7 +13,7 @@ const CartContent = () => {
     const dispatch = useDispatch();
 
     const orderHandler = () => {
-        dispatch(setInitModal(true));
+        dispatch(setInitModal('order'));
         dispatch(setIsModal(true));
     };
 
@@ -22,11 +23,11 @@ const CartContent = () => {
 
             <div className={cls.cartContent__element}>
                 <p>Количество линеек:</p>
-                <span>{carts.length} шт</span>
+                <span>{mathTotalCount(carts)} шт</span>
             </div>
             <div className={cls.cartContent__element}>
                 <p>Количество товаров:</p>
-                <span>{carts.length * 5} шт</span>
+                <span>{mathTotalCount(carts) * 5} шт</span>
             </div>
             <div className={cls.cartContent__element}>
                 <p>Стоимость:</p>
@@ -46,8 +47,7 @@ const CartContent = () => {
                 <div className={cls.cartContent__element}>
                     <p>Итого к оплате:</p>
                     <span>
-                        {totalPrice(carts) - totalDiscountPrice(carts)}
-                        рублей
+                        {totalPrice(carts) - totalDiscountPrice(carts)} рублей
                     </span>
                 </div>
                 <button onClick={orderHandler}>Оформить заказ</button>

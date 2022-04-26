@@ -6,6 +6,7 @@ import { appLinks } from "../constants/appLinks";
 import { useBreads } from "../hooks/useBreads";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { endpoints } from "../constants/init";
 
 const Cart = () => {
     const { dispatcher } = useBreads([{ title: appLinks.CART }]);
@@ -22,8 +23,9 @@ const Cart = () => {
             <CartList />
             {carts.length === 0 && (
                 <SimiliarProducts
+                    recommened={true}
                     limit={5}
-                    url="products"
+                    url={endpoints.PRODUCTS}
                     description="Возможно Вас заинтересует"
                     empty="На данный момент товаров нет!"
                 />

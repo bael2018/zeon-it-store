@@ -27,7 +27,7 @@ function* productWorker({ params }) {
         yield put(setProductCount({ total }))
         yield put(productFulfilled({ data: response.data }));
     } catch (error) {
-        yield put(productRejected({ error: error.message }));
+        yield put(productRejected({ error: error.response.status }));
     }
 }
 

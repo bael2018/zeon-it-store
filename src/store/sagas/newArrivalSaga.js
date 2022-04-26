@@ -8,14 +8,14 @@ import {
     newArrivalRejected,
     setNewArrivalFinished,
 } from "../reducers/newArrivalReducer";
-import { API_URL } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 
 export const NEWARRIVAL_SAGA = "NEWARRIVAL_SAGA";
 const limit = 4;
 
 const asyncRequest = async (page) => {
     const response = await axios.get(
-        `${API_URL}products?status_like=Новинки&_limit=${limit}&_page=${page}`
+        `${API_URL}${endpoints.PRODUCTS}?status_like=Новинки&_limit=${limit}&_page=${page}`
     );
     return await response;
 };
@@ -41,7 +41,7 @@ function* newArrivalWorker({ query }) {
             yield put(setNewArrivalFinished({ finished: true }));
         }
     } catch (error) {
-        yield put(newArrivalRejected({ error: error.message }));
+        yield put(newArrivalRejected({ error: error.response.status }));
     }
 }
 

@@ -8,36 +8,32 @@ import {
     setNewsPage,
     setNewsTotalCount,
 } from "../reducers/newsReducer";
-import { API_URL } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 
 export const NEWS_SAGA = "NEWS_SAGA";
 
 const request = async (page) => {
-    const response = await axios.get(
-        `${API_URL}news?_limit=8&_page=${page}`
-    );
+    const response = await axios.get(`${API_URL}${endpoints.NEWS}?_limit=8&_page=${page}`);
     return await response;
 };
 
 function* newsWorker() {
     try {
         const { page, data } = yield select((state) => state.news);
-        if(data.length === 0){
+        if (data.length === 0) {
             yield put(newsPending());
         }
         const response = yield call(request.bind(null, page));
-        const totalCount = response.headers['x-total-count']
+        const totalCount = response.headers["x-total-count"];
 
-        if(data.length < totalCount){
+        if (data.length < totalCount) {
             yield put(newsFulfilled({ data: response.data }));
-            yield put(setNewsPage({ page: page + 1 }))
-            yield put(
-                setNewsTotalCount({ count: totalCount })
-            );
-            yield put(setIsFetching({ fetching: false }))    
+            yield put(setNewsPage({ page: page + 1 }));
+            yield put(setNewsTotalCount({ count: totalCount }));
+            yield put(setIsFetching({ fetching: false }));
         }
     } catch (error) {
-        yield put(newsRejected(error.message));
+        yield put(newsRejected({ error: error.response.status }));
     }
 }
 

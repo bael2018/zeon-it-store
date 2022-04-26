@@ -1,7 +1,11 @@
 import cls from "../../../scss/components/partials/ordermodal.module.scss";
+import { clearCartProduct } from "../../../store/reducers/cartReducer";
 import { regexEmail, regexPhone } from "../../../constants/init";
 import CustomInput from "../../elements/custom/CustomInput";
 import { useInput } from "../../../hooks/useInput";
+import { useRequest } from "../../../hooks/useRequest";
+import { paths } from "../../../constants/paths";
+import { useNavigate } from "react-router-dom";
 import {
     setIsModal,
     setSuccessModal,
@@ -10,13 +14,13 @@ import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { MdDone } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { paths } from "../../../constants/paths";
-import { useRequest } from "../../../hooks/useRequest";
 
 const OrderModal = () => {
     const [isValid, setIsValid] = useState(false);
     const [offer, setOffer] = useState(false);
+    const [isNumber, setIsNumber] = useState("");
+    const [isEmail, setIsEmail] = useState("");
+
     const userCountry = useInput("");
     const userSname = useInput("");
     const userEmail = useInput("");
@@ -27,23 +31,40 @@ const OrderModal = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { data, error, fetching } = useRequest('post', "userInfo");
+    const { error, fetching } = useRequest("post", "userInfo");
 
-    const orderHandler = (e) => {
+    const orderHandler = async (e) => {
         e.preventDefault();
 
-        const body = {
-            userName: userName.value,
-            userSecondName: userSname.value,
-            userEmail: userEmail.value,
-            userPhone: userPhone.value,
-            userCountry: userCountry.value,
-            userCity: userCity.value,
-        }
+        if (isNumber === "valid" && isEmail === "valid" && isValid) {
+            const body = {
+                userName: userName.value,
+                userSecondName: userSname.value,
+                userEmail: userEmail.value,
+                userPhone: userPhone.value,
+                userCountry: userCountry.value,
+                userCity: userCity.value,
+            };
+            
+            await fetching(body)
 
-        if(data){
-            fetching(body)
-            dispatch(setSuccessModal(true));
+            if (error) {
+                alert(`Произошла ошибка статус ${error}`)
+            }else{
+                dispatch(setSuccessModal(true));
+
+                setIsEmail("invalid");
+                setIsNumber("invalid");
+                dispatch(clearCartProduct());
+                alert(`Произошла ошибка статус ${error}`)
+            }
+        } else {
+            if(isEmail !== 'valid'){
+                setIsEmail("invalid");
+            }
+            if(isNumber !== 'valid'){
+                setIsNumber("invalid");
+            }
         }
     };
 
@@ -52,14 +73,32 @@ const OrderModal = () => {
             offer &&
             userSname.value &&
             userCountry.value &&
-            regexEmail.test(userEmail.value) &&
-            regexPhone.test(userPhone.value) &&
+            userEmail.value &&
+            userPhone.value &&
             userName.value &&
             userCity.value
         ) {
             setIsValid(true);
         } else {
             setIsValid(false);
+        }
+
+        if (isValid) {
+            if (
+                regexEmail.test(userEmail.value)
+            ) {
+                setIsEmail("valid");
+            } else {
+                setIsEmail("invalid");
+            }
+
+            if (
+                regexPhone.test(userPhone.value)
+            ) {
+                setIsNumber("valid");
+            } else {
+                setIsNumber("invalid");
+            }
         }
     }, [
         userEmail.value,
@@ -68,7 +107,7 @@ const OrderModal = () => {
         userCountry.value,
         userPhone.value,
         userName.value,
-        offer
+        offer,
     ]);
 
     const publicOfferHandler = () => {
@@ -100,6 +139,7 @@ const OrderModal = () => {
                     />
                     <CustomInput
                         type="text"
+                        isOk={isEmail}
                         title="Электронная почта"
                         placeholder="example@mail.com"
                         {...userEmail.bind()}
@@ -107,6 +147,7 @@ const OrderModal = () => {
                     <CustomInput
                         phone
                         type="text"
+                        isOk={isNumber}
                         title="Ваш номер телефона"
                         placeholder="Введите номер телефона"
                         {...userPhone.bind()}

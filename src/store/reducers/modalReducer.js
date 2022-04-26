@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     successModal: false,
     isModal: false,
-    initModal: false,
+    initModal: "",
+    isSidebar: false,
 };
 
 const modalReducer = createSlice({
@@ -19,9 +20,12 @@ const modalReducer = createSlice({
         setInitModal: (state, action) => {
             state.initModal = action.payload;
         },
+        setSidebar: (state) => {
+            state.isSidebar = !state.isSidebar;
+        },
     },
 });
 
-export const { setIsModal, setSuccessModal, setInitModal } =
+export const { setIsModal, setSuccessModal, setInitModal, setSidebar } =
     modalReducer.actions;
 export default modalReducer.reducer;

@@ -8,14 +8,14 @@ import {
     collectionPending,
     collectionRejected,
 } from "../reducers/collectionReducer";
-import { API_URL } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 
 export const COLLECTION_SAGA = "COLLECTION_SAGA";
 const limit = 4;
 
 const asyncRequest = async (page) => {
     const response = await axios.get(
-        `${API_URL}collections?_limit=${limit}&_page=${page}`
+        `${API_URL}${endpoints.COLLECTIONS}?_limit=${limit}&_page=${page}`
     );
     return await response;
 };

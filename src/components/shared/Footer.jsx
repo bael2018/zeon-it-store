@@ -8,19 +8,25 @@ import {
     BsWhatsapp,
 } from "react-icons/bs";
 import { paths } from "../../constants/paths";
-import { FaTelegramPlane } from "react-icons/fa";
 import { appLinks } from "../../constants/appLinks";
+import { useBreads } from "../../hooks/useBreads";
+import { FaTelegramPlane } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { memo, useEffect } from "react";
+import { useEffect } from "react";
 
 const Footer = () => {
     const navigate = useNavigate();
-
-    const { data, status, error, fetching } = useRequest('get', "app");
+    const { data, fetching } = useRequest('get', "app");
+    const { dispatcher } = useBreads([]);
 
     useEffect(() => {
         fetching();
     }, []);
+
+    const navLogoHandler = () => {
+        dispatcher();
+        navigate(paths.MAIN);
+    };
 
     return (
         <div className={cls.footer}>
@@ -29,13 +35,13 @@ const Footer = () => {
                     <div className={cls.footer__wrapper__logo}>
                         <div>
                             <img
-                                onClick={() => navigate("/")}
+                                onClick={navLogoHandler}
                                 src={data[0]?.appFooterLogo}
                                 alt="ZEON-IT-HUB-FOOTER-LOGO"
                             />
                         </div>
                         <div className={cls.footer__wrapper__list}>
-                            <ul>
+                            <ul className={cls.company}>
                                 <h4>Компания</h4>
                                 <li>
                                     <CustomLink to={paths.ABOUT_US}>
@@ -131,4 +137,4 @@ const Footer = () => {
     );
 };
 
-export default memo(Footer);
+export default Footer;

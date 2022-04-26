@@ -1,5 +1,5 @@
 import { call, takeLatest, put, apply } from "redux-saga/effects";
-import { API_URL } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 import {
     searchFulfilled,
     searchPending,
@@ -16,12 +16,12 @@ function* searchWorker({ query }) {
             yield put(searchPending());
             const response = yield call(
                 fetch,
-                `${API_URL}products?title_like=${query}`
+                `${API_URL}${endpoints.PRODUCTS}?title_like=${query}`
             );
             const parser = yield apply(response, response.json);
             yield put(searchFulfilled({ data: parser }));
         } catch (error) {
-            yield put(searchRejected(error.message));
+            yield put(searchRejected({ error: error.response.status }));
         }
     }
 }

@@ -30,14 +30,14 @@ const BreadCrumb = () => {
                                 return (
                                     <li
                                         className={cls.bread__wrapper_active}
-                                        key={url}
+                                        key={title}
                                     >
                                         <span>/</span> {title}
                                     </li>
                                 );
                             } else {
                                 return (
-                                    <li key={url} onClick={() => pushHandler(url)}>
+                                    <li key={title} onClick={() => pushHandler(url)}>
                                         <span>/</span> {title}
                                     </li>
                                 );

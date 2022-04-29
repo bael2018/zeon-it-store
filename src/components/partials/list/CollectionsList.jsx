@@ -4,6 +4,7 @@ import CollectionsItem from "../../elements/CollectionsItem";
 import Description from "../../elements/custom/Description";
 import { appLinks } from "../../../constants/appLinks";
 import { useDispatch, useSelector } from "react-redux";
+import { endpoints } from "../../../constants/init";
 import {
     setPageEnd,
     setPageStart,
@@ -13,7 +14,6 @@ import PagePagination from "../PagePagination";
 import Loader from "../../elements/ui/Loader";
 import { useEffect, useState } from "react";
 import Error from "../../../pages/Error";
-import { endpoints } from "../../../constants/init";
 
 const CollectionsList = () => {
     const { data, status, error, totalCount } = useSelector(

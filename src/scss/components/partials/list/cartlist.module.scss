@@ -2,9 +2,23 @@
     &__wrapper{
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
 
         &__content{
             width: 768px;
+            margin-bottom: 20px;
+
+            @media screen and (max-width: 1280px){
+                width: 65.7%;
+            }
+
+            @media screen and (max-width: 1000px){
+                width: 58%;
+            }
+
+            @media screen and (max-width: 850px){
+                width: 100%;
+            }
         }
     }
 }

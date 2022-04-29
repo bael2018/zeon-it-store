@@ -27,4 +27,13 @@
             color: #979797;
         }
     }
+
+    @media screen and (max-width: 1000px){
+        width: 49%;
+        margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 600px){
+        width: 100%;
+    }
 }

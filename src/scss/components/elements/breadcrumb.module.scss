@@ -14,6 +14,14 @@
             max-width: 90%;
         }
 
+        @media screen and (max-width: 600px){
+            overflow: hidden;
+
+            ul{
+                width: 600px;
+            }
+        }
+
         ul{
             margin: 0;
             padding: 0;
@@ -28,6 +36,10 @@
                 line-height: 17px;
                 color: #393939;
                 cursor: pointer;
+
+                @media screen and (max-width: 600px){
+                    font-size: 12px;
+                }
 
                 span{
                     margin-right: 10px;

@@ -7,6 +7,32 @@
     height: fit-content;
     background: #FFFFFF;
 
+    @media screen and (max-width: 1250px){
+        width: 45%;
+    }
+
+    @media screen and (max-width: 950px){
+        width: 100%;
+        margin: 0 auto;
+        top: 0;
+        padding: 15px;
+        position: relative !important;
+
+        &_active{
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        &_active{
+            width: 100%;
+        }
+
+        h4{
+            font-size: 18px !important;
+        }
+    }
+
     h4{
         font-weight: 500;
         font-size: 24px;
@@ -110,7 +136,7 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
-        
+
         p{
             font-weight: 400;
             font-size: 14px;
@@ -127,7 +153,18 @@
                 font-size: 14px;
                 line-height: 17px;
             }
-            
+        }
+
+        @media screen and (max-width: 1050px){
+            p{
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 500px){
+            p{
+                margin-bottom: 15px;
+            }
         }
     }
 
@@ -162,6 +199,22 @@
 
             svg{
                 transform: scale(2.2);
+            }
+        }
+
+        @media screen and (max-width: 600px){
+            button:nth-child(1){
+                width: 83%;
+            }
+
+            button:nth-child(2){
+                width: 15%;
+            }
+        }
+        
+        @media screen and (max-width: 400px){
+            button:nth-child(1){
+                padding: 14px 0;
             }
         }
 

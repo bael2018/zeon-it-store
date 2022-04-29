@@ -31,7 +31,9 @@ const WishlistProducts = () => {
         const scrollTop = e.target.documentElement.scrollTop;
         const windowHeight = window.innerHeight;
 
-        if (scrollHeight - (scrollTop + windowHeight) < 300) {
+        const width = window.innerWidth > 600 ? 300 : 650
+
+        if (scrollHeight - (scrollTop + windowHeight) < width) {
             setIsFetching(true);
         }
     }

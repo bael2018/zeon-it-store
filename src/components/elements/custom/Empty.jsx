@@ -1,6 +1,8 @@
+import cls from '../../../scss/components/elements/empty.module.scss'
+
 const Empty = ({ children }) => {
     return (
-        <div>{children}</div>
+        <div className={cls.empty}>{children}</div>
     )
 }
 

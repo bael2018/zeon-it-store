@@ -20,13 +20,15 @@ const Wishlist = () => {
         <ContentLayout>
             <WishlistProducts />
             {wishes.length === 0 && (
-                <SimiliarProducts
-                    recommened={true}
-                    url={endpoints.PRODUCTS}
-                    limit={5}
-                    description="Возможно Вас заинтересует"
-                    empty="На данный момент товаров нет!"
-                />
+                <div className="marginTopStyle">
+                    <SimiliarProducts
+                        recommened={true}
+                        url={endpoints.PRODUCTS}
+                        limit={5}
+                        description="Возможно Вас заинтересует"
+                        empty="На данный момент товаров нет!"
+                    />
+                </div>
             )}
         </ContentLayout>
     );

@@ -38,4 +38,36 @@
         background: #1D1D1B !important;
         color: white !important;
     }
+
+    @media screen and (max-width: 600px){
+        span{
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        span{
+            height: 37px;
+            width: 37px;
+
+            svg{
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    @media screen and (max-width: 430px){
+        span{
+            height: 35px;
+            width: 35px;
+        }
+    }
+
+    @media screen and (max-width: 390px){
+        span{
+            height: 33px;
+            width: 33px;
+        }
+    }
 }

@@ -4,9 +4,9 @@ import CartList from "../components/partials/list/CartList";
 import Modal from "../components/elements/custom/Modal";
 import { appLinks } from "../constants/appLinks";
 import { useBreads } from "../hooks/useBreads";
+import { endpoints } from "../constants/init";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { endpoints } from "../constants/init";
 
 const Cart = () => {
     const { dispatcher } = useBreads([{ title: appLinks.CART }]);

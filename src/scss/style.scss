@@ -16,5 +16,13 @@ button,
     &__wrapper{
         max-width: $app-container-width;
         margin: 0 auto;
+
+        @media screen and (max-width: 1250px){
+            width: 90%;
+        }
+    }
+
+    .marginTopStyle{
+        margin-top: 15px;
     }
 }

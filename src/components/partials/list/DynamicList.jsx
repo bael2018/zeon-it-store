@@ -5,7 +5,7 @@ import Loader from "../../elements/ui/Loader";
 import { memo } from 'react';
 
 const DynamicList = ({ empty, description, params, element }) => {
-    const { data, status, error } = params;
+    const { data, status } = params;
 
     return (
         <div className={cls.dynamic}>

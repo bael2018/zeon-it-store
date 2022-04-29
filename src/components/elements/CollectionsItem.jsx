@@ -2,11 +2,11 @@ import cls from "../../scss/components/elements/collectionsitem.module.scss";
 import { AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const CollectionsItem = ({ title, image }) => {
+const CollectionsItem = ({ title, image, carousel }) => {
     const navigate = useNavigate();
 
     return (
-        <div className={cls.collectionItem}>
+        <div className={`${cls.collectionItem} ${carousel && cls.collectionItem_active}`}>
             <div className={cls.collectionItem__image}>
                 <img src={image} alt="картина коллекций" />
                 <p>{title}</p>

@@ -15,7 +15,7 @@ import { useState } from "react";
 const ProductItem = ({ data = {}, styles = false }) => {
     const { wishes } = useSelector((state) => state.wishes);
     const [colorActive, setColorActive] = useState("");
-    const [view, setView] = useState(false);
+    const [activeImage, setActiveImage] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -24,6 +24,7 @@ const ProductItem = ({ data = {}, styles = false }) => {
         colors,
         currentPrice,
         previousPrice,
+        sizeRage,
         collection,
         id,
         productImages,
@@ -64,8 +65,6 @@ const ProductItem = ({ data = {}, styles = false }) => {
     return (
         <div
             onClick={navigateHandler}
-            onMouseLeave={() => setView(false)}
-            onMouseEnter={() => setView(true)}
             className={`${cls.productItem} ${styles && cls.productItem_multy}`}
         >
             {previousPrice && (
@@ -92,14 +91,38 @@ const ProductItem = ({ data = {}, styles = false }) => {
                 style={{ position: "relative" }}
                 className={cls.productItem__images}
             >
-                {view && productImages?.length > 1 ? (
-                    <ProductCarousel
-                        data={productImages}
-                    />
+                {productImages?.length > 1 ? (
+                    <>
+                        <img
+                            src={
+                                productImages && activeImage === ""
+                                    ? productImages[0].image
+                                    : productImages[activeImage - 1]?.image
+                            }
+                            alt="productPic"
+                        />
+                        {productImages?.map((item) => (
+                            <div
+                                onMouseEnter={() => setActiveImage(item.id)}
+                                onMouseLeave={() => setActiveImage(item.id)}
+                                style={{
+                                    width: `calc(100% / ${productImages?.length})`,
+                                    left: `calc(100% / ${productImages?.length} * ${item.id} - calc(100% / ${productImages?.length})`,
+                                }}
+                                className={`${cls.scroller_cover} ${
+                                    item.id === activeImage &&
+                                    cls.scroller_cover_active
+                                }`}
+                            >
+                                {" "}
+                                <span></span>{" "}
+                            </div>
+                        ))}
+                    </>
                 ) : (
                     <img
                         src={productImages && productImages[0].image}
-                        alt="productPic"
+                        alt="картинка товара"
                     />
                 )}
             </div>
@@ -111,7 +134,7 @@ const ProductItem = ({ data = {}, styles = false }) => {
                     )}
                     <p>{currentPrice} р</p>
                 </div>
-                <span>Размер: 42-50</span>
+                <span>Размер: {sizeRage}</span>
                 <div className={cls.productItem__info__colors}>
                     {colors?.length ? (
                         colors?.map(({ color }, index) => (

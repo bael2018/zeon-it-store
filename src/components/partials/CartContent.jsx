@@ -7,50 +7,91 @@ import {
     totalDiscountPrice,
     totalPrice,
 } from "../../utils/mathTotalPrice";
+import { useState } from "react";
 
 const CartContent = () => {
     const { carts } = useSelector((state) => state.cart);
+    const [isVisible, setIsVisible] = useState(false);
     const dispatch = useDispatch();
 
     const orderHandler = () => {
-        dispatch(setInitModal('order'));
+        dispatch(setInitModal("order"));
         dispatch(setIsModal(true));
     };
 
     return (
         <div className={cls.cartContent}>
-            <h4>Сумма заказа</h4>
+            {window.innerWidth < 850 ? (
+                isVisible && (
+                    <>
+                        <h4>Сумма заказа</h4>
+                        <div className={cls.cartContent__element}>
+                            <p>Общее количество:</p>
+                            <span>
+                                {mathTotalCount(carts)} линеек (
+                                {mathTotalCount(carts) * 5} шт.)
+                            </span>
+                        </div>
+                        <div className={cls.cartContent__element}>
+                            <p>Стоимость:</p>
+                            <span>{totalPrice(carts)} рублей</span>
+                        </div>
+                    </>
+                )
+            ) : (
+                <>
+                    <h4>Сумма заказа</h4>
+                    <div className={cls.cartContent__element}>
+                        <p>Количество линеек:</p>
+                        <span>{mathTotalCount(carts)} шт</span>
+                    </div>
+                    <div className={cls.cartContent__element}>
+                        <p>Количество товаров:</p>
+                        <span>{mathTotalCount(carts) * 5} шт</span>
+                    </div>
+                    <div className={cls.cartContent__element}>
+                        <p>Стоимость:</p>
+                        <span>{totalPrice(carts)} рублей</span>
+                    </div>
 
-            <div className={cls.cartContent__element}>
-                <p>Количество линеек:</p>
-                <span>{mathTotalCount(carts)} шт</span>
-            </div>
-            <div className={cls.cartContent__element}>
-                <p>Количество товаров:</p>
-                <span>{mathTotalCount(carts) * 5} шт</span>
-            </div>
-            <div className={cls.cartContent__element}>
-                <p>Стоимость:</p>
-                <span>{totalPrice(carts)} рублей</span>
-            </div>
-            <div className={cls.cartContent__element}>
-                <p>Скидка:</p>
-                <span>
-                    {mathTotalPrice(carts, "discount") > 0
-                        ? totalDiscountPrice(carts)
-                        : 0}{" "}
-                    рублей
-                </span>
-            </div>
+                    {mathTotalPrice(carts, "discount") > 0 && (
+                        <div className={cls.cartContent__element}>
+                            <p>Скидка:</p>
+                            <span>
+                                {totalDiscountPrice(carts)} {" "}
+                                рублей
+                            </span>
+                        </div>
+                    )}
+                </>
+            )}
 
-            <div className={cls.cartContent__result}>
+            <div
+                className={`${cls.cartContent__result} ${
+                    !isVisible &&
+                    window.innerWidth < 850 &&
+                    cls.cartContent__result_active
+                }`}
+            >
                 <div className={cls.cartContent__element}>
                     <p>Итого к оплате:</p>
                     <span>
                         {totalPrice(carts) - totalDiscountPrice(carts)} рублей
                     </span>
                 </div>
-                <button onClick={orderHandler}>Оформить заказ</button>
+                {window.innerWidth < 850 && (
+                    <div
+                        onClick={() => setIsVisible(!isVisible)}
+                        className={cls.visible}
+                    >
+                        {isVisible ? "Скрыть" : "Информация о заказе"}
+                    </div>
+                )}
+                <button onClick={orderHandler}>
+                    {window.innerWidth < 850
+                        ? "Оформление заказа"
+                        : "Оформить заказ"}
+                </button>
             </div>
         </div>
     );

@@ -48,20 +48,27 @@ const SingleCollection = () => {
                     <Description text={title} />
                     <ProductList
                         empty="На данный момент коллекции нет!"
-                        params={{ url: endpoints.PRODUCTS, search: title, limit, page }}
+                        params={{
+                            url: endpoints.PRODUCTS,
+                            search: title,
+                            limit,
+                            page,
+                        }}
                     />
                     {!status && totalCount > limit && (
                         <PagePagination query={paginationQuery} />
                     )}
                 </>
             )}
-            <SimiliarProducts
-                limit={5}
-                url={endpoints.PRODUCTS}
-                search="Новинки"
-                description="Новинки"
-                empty="На данный момент товаров нет!"
-            />
+            <div className="marginTopStyle">
+                <SimiliarProducts
+                    limit={5}
+                    url={endpoints.PRODUCTS}
+                    search="Новинки"
+                    description="Новинки"
+                    empty="На данный момент товаров нет!"
+                />
+            </div>
         </ContentLayout>
     );
 };

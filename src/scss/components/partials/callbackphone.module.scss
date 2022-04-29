@@ -3,6 +3,24 @@
     box-sizing: border-box;
     width: 436px;
     position: relative;
+    background: white;
+
+    @media screen and (max-width: 500px){
+        width: 90%;
+        margin: 0 auto;
+        padding: 30px 25px;
+    }
+    
+    @media screen and (max-width: 380px){
+        h4{
+            font-size: 17px !important;
+        }
+
+        p{
+            font-size: 15px !important; 
+        }
+    }
+
 
     &__closer{
         transform: scale(1.5);

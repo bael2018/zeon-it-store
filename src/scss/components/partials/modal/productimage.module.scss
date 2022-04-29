@@ -21,4 +21,28 @@
             object-fit: cover;
         }
     }
+
+    @media screen and (max-width: 500px){
+        div{
+            height: 90vh;
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        span{
+            right: 30px;
+        }
+    }
+
+    @media screen and (max-width: 400px){
+        div{
+            height: 90vh;
+            width: 310px;
+            margin: 0 auto;
+        }
+
+        span{
+            right: 20px;
+        }
+    }
 }

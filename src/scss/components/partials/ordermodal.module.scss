@@ -3,6 +3,20 @@
     background: #FFFFFF;
     box-sizing: border-box;
     width: 440px;
+    
+    @media screen and (max-width: 1250px){
+        height: 90vh;
+        overflow-y: scroll;
+    }
+
+    @media screen and (max-width: 500px){
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    @media screen and (max-width: 420px){
+        width: 80%;
+    }
 
     &__title{
         display: flex;
@@ -55,6 +69,7 @@
                 margin-top: 15px;
                 font-weight: 500;
                 font-size: 15px;
+                flex-wrap: wrap;
                 line-height: 18px;
                 color: #393939;
 

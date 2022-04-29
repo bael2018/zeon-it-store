@@ -3,6 +3,7 @@ import cls from "../../scss/components/mobilenavbar.module.scss";
 import { setSidebar } from "../../store/reducers/modalReducer";
 import SearchNavList from "../partials/list/SearchNavList";
 import { useDispatch, useSelector } from "react-redux";
+import { navbar_target } from "../../constants/init";
 import { useRequest } from "../../hooks/useRequest";
 import { useBreads } from "../../hooks/useBreads";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +29,7 @@ const MobileNavbar = () => {
     };
 
     return (
-        <div className={cls.mobilenav}>
+        <div id={navbar_target} className={cls.mobilenav}>
             <div
                 onClick={() => dispatch(setSidebar())}
                 className={cls.mobilenav__bars}

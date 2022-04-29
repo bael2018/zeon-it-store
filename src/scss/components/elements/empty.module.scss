@@ -1,0 +1,9 @@
+.empty{
+    @media screen and (max-width: 500px){
+        font-size: 15px;
+    }
+
+    @media screen and (max-width: 360px){
+        font-size: 14px;
+    }
+}

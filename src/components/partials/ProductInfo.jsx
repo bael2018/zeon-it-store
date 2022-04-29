@@ -1,18 +1,17 @@
 import { deleteWishlistProduct, setWishlistProducts } from "../../store/reducers/wishlistReducer";
 import cls from "../../scss/components/partials/productinfo.module.scss";
 import { setCartProducts } from "../../store/reducers/cartReducer";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useIncluded } from "../../hooks/useIncluded";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoBagOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { paths } from "../../constants/paths";
+import { useState } from "react";
 
 const ProductInfo = ({ data = {} }) => {
     const { wishes } = useSelector((state) => state.wishes);
     const { carts } = useSelector((state) => state.cart);
-    const [activeColor, setActiveColor] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -29,7 +28,8 @@ const ProductInfo = ({ data = {} }) => {
         material,
         id,
     } = data;
-
+    
+    const [activeColor, setActiveColor] = useState(colors && colors[0]?.color);
     const isIncludedCart = useIncluded(carts, id);
     const isIncludedWishes = useIncluded(wishes, id);
 
@@ -63,7 +63,7 @@ const ProductInfo = ({ data = {} }) => {
     };
 
     return (
-        <div className={cls.productInfo}>
+        <div className={`${cls.productInfo} ${data?.productImages?.length === 1 && cls.productInfo_active}`}>
             <h4>{title}</h4>
             <div className={cls.productInfo__wrapper}>
                 <h5 className={cls.productInfo__element}>Артикул:</h5>

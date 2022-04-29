@@ -3,4 +3,12 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    @media screen and (max-width: 1250px){
+        width: 53%;
+    }
+
+    @media screen and (max-width: 950px){
+        width: 100%;
+    }
 }

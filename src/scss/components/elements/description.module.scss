@@ -5,4 +5,13 @@
     margin: 0;
     margin-bottom: 20px;
     color: #393939;
+
+    @media screen and (max-width: 600px){
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 430px){
+        font-size: 18px;
+    }
 }

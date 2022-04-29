@@ -1,5 +1,6 @@
 import { newArrival_saga_action } from "../../store/sagas/newArrivalSaga";
 import { newArrivalPage } from "../../store/reducers/newArrivalReducer";
+import AdditionalCarousel from "./carosel/AdditionalCarousel";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "../elements/ProductItem";
 import { useCallback, useEffect } from "react";
@@ -23,20 +24,27 @@ const NewArrivals = () => {
         dispatch(newArrival_saga_action(location.pathname));
     }, [body.page]);
 
-    if(body.error){
-        return <Error status={body.error}/>
-    }else{
-        return (
+    if (body.error) {
+        return <Error status={body.error} />;
+    } else {
+        return window.innerWidth < 600 ? (
+            <>
+                <AdditionalCarousel description="Новинки" data={body.data} />
+                {!body.isFinished && <LoadBtn loadData={loadData} />}
+            </>
+        ) : (
             <>
                 <DynamicList
                     empty="На данный момент данных нет"
                     description="Новинки"
                     params={body}
-                    element={(data) => <ProductItem key={data.id} data={data} />}
+                    element={(data) => (
+                        <ProductItem key={data.id} data={data} />
+                    )}
                 />
                 {!body.isFinished && <LoadBtn loadData={loadData} />}
             </>
-        );    
+        );
     }
 };
 

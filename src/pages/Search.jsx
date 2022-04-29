@@ -30,13 +30,15 @@ const Search = () => {
             <ContentLayout>
                 <SearchResult result={id} />
                 {data?.length === 0 && (
-                    <SimiliarProducts
-                        recommened={true}
-                        limit={5}
-                        url={endpoints.PRODUCTS}
-                        description="Возможно Вас заинтересует"
-                        empty="На данный момент товаров нет!"
-                    />
+                    <div className="marginTopStyle">
+                        <SimiliarProducts
+                            recommened={true}
+                            limit={5}
+                            url={endpoints.PRODUCTS}
+                            description="Возможно Вас заинтересует"
+                            empty="На данный момент товаров нет!"
+                        />
+                    </div>
                 )}
             </ContentLayout>
         );

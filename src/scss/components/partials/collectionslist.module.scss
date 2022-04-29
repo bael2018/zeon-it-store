@@ -1,5 +1,13 @@
 .collections{
-    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
+    gap: .6%;
+
+    @media screen and (max-width:1050px){
+        gap: .5%;
+    }
+
+    &_between{
+        justify-content: space-between;
+    }
 }

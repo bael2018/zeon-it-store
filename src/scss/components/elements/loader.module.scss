@@ -13,7 +13,18 @@
       position: relative;
       width: 80px;
       height: 80px;
+
+      @media screen and (max-width: 600px){
+        width: 60px;
+        height: 60px;
+      }
+
+      @media screen and (max-width: 420px){
+        width: 40px;
+        height: 40px;
+      }
     }
+    
     .lds_roller div {
       animation: lds_roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
       transform-origin: 40px 40px;

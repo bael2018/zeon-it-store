@@ -1,5 +1,4 @@
 import cls from "../../scss/components/elements/productitem.module.scss";
-import ProductCarousel from "../partials/carosel/ProductCarousel";
 import { mathProcent } from "../../utils/mathProcent";
 import { useNavigate } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
@@ -103,6 +102,7 @@ const ProductItem = ({ data = {}, styles = false }) => {
                         />
                         {productImages?.map((item) => (
                             <div
+                                key={item.id}
                                 onMouseEnter={() => setActiveImage(item.id)}
                                 onMouseLeave={() => setActiveImage(item.id)}
                                 style={{

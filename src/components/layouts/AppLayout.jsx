@@ -25,7 +25,7 @@ const AppLayout = () => {
 
     return (
         <div className="root">
-            <MobileNavbar/>
+            {window.innerWidth < 900 && <MobileNavbar/>}
             <Navbar />
             <Sidebar/>
             <FixedMessage />

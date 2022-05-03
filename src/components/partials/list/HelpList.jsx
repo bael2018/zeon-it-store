@@ -25,7 +25,7 @@ const HelpList = () => {
             <div className={cls.help}>
                 {!status && <img src={data.helpImage} alt="картина помощи" />}
     
-                <div className={cls.help__list}>
+                <div className={`${cls.help__list} ${status && cls.help__list_load}`}>
                     <Description text={appLinks.HELP} />
     
                     {status ? (

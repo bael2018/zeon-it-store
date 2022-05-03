@@ -28,7 +28,7 @@ const AppLayout = () => {
             {window.innerWidth < 900 && <MobileNavbar/>}
             <Navbar />
             <Sidebar/>
-            <FixedMessage />
+            {window.innerWidth > 900 && <FixedMessage />}
             <Modal/>
             <div className="container">
                 <div className="container__wrapper">

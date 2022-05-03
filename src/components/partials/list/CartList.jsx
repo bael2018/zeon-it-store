@@ -16,7 +16,7 @@ const CartList = () => {
                 <div className={cls.cartList__wrapper__content}>
                     {carts.length ? (
                         carts.map((item) => (
-                            <CartItem key={item.pickedPrice} data={item} />
+                            <CartItem key={item.pickedColor} data={item} />
                         ))
                     ) : (
                         <Empty>У вас нет товаров в корзине</Empty>

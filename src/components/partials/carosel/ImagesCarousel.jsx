@@ -39,7 +39,7 @@ const ImagesCarousel = ({ data }) => {
                         return (
                             <SwiperSlide key={id}>
                                 <img
-                                    src={image}
+                                    src={image ? image : ''}
                                     onClick={() => zoomHandler(image)}
                                     alt="картинка товара"
                                 />

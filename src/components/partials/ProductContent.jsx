@@ -17,6 +17,7 @@ const ProductContent = () => {
     );
 
     useEffect(() => {
+        window.scrollTo(window.scrollX, 0);
         fetching();
     }, [id]);
 

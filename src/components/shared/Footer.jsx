@@ -24,6 +24,7 @@ const Footer = () => {
     }, []);
 
     const navLogoHandler = () => {
+        window.scrollTo(window.scrollX, 0);
         dispatcher();
         navigate(paths.MAIN);
     };

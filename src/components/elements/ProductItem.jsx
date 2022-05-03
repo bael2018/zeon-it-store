@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useIncluded } from "../../hooks/useIncluded";
 import { FaHeart } from "react-icons/fa";
 import { useState } from "react";
+import { validPrice } from "../../utils/validPrice";
 
 const ProductItem = ({ data = {}, styles = false }) => {
     const { wishes } = useSelector((state) => state.wishes);
@@ -73,8 +74,8 @@ const ProductItem = ({ data = {}, styles = false }) => {
             )}
             <div
                 className={`${cls.productItem__heart} ${
-                    isWish && cls.productItem__heart_visible
-                }`}
+                    window.innerWidth < 750 && cls.productItem__heart_elem
+                } ${isWish && cls.productItem__heart_visible}`}
             >
                 {isIncluded ? (
                     <span onClick={deleteItemHandler} className={cls.active}>
@@ -130,9 +131,9 @@ const ProductItem = ({ data = {}, styles = false }) => {
                 <h5>{title}</h5>
                 <div>
                     {previousPrice && (
-                        <p className={cls.active}>{previousPrice} p</p>
+                        <p className={cls.active}>{validPrice(previousPrice)} p</p>
                     )}
-                    <p>{currentPrice} р</p>
+                    <p>{validPrice(currentPrice)} р</p>
                 </div>
                 <span>Размер: {sizeRage}</span>
                 <div className={cls.productItem__info__colors}>

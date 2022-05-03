@@ -12,12 +12,12 @@ export const mathTotalCount = (arr) => {
 
 export const totalPrice = (carts) => {
     return (
-        mathTotalPrice(carts, "currentPrice")
+        mathTotalPrice(carts, "currentPrice").toString()
     );
 };
 
 export const totalDiscountPrice = (carts) => {
     return (
-        mathTotalPrice(carts, "discount")
+        mathTotalPrice(carts, "discount").toString()
     );  
 };

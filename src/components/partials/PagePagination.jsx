@@ -26,6 +26,7 @@ const PagePagination = ({ query }) => {
 
     const paginateDecrement = () => {
         if (page > 1) {
+            window.scrollTo(window.scrollX, 250);
             if (pagesData.length > 4 && pageStart > 0) {
                 dispatch(pageStartDecrement());
                 dispatch(pageEndDecrement());
@@ -36,6 +37,7 @@ const PagePagination = ({ query }) => {
 
     const paginateIncrement = () => {
         if (page < pagesCount) {
+            window.scrollTo(window.scrollX, 250);
             if (pageEnd < pagesData.length) {
                 dispatch(pageStartIncrement());
                 dispatch(pageEndIncrement());

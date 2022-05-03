@@ -8,6 +8,7 @@ import {
     totalPrice,
 } from "../../utils/mathTotalPrice";
 import { useState } from "react";
+import { validPrice } from "../../utils/validPrice";
 
 const CartContent = () => {
     const { carts } = useSelector((state) => state.cart);
@@ -34,7 +35,7 @@ const CartContent = () => {
                         </div>
                         <div className={cls.cartContent__element}>
                             <p>Стоимость:</p>
-                            <span>{totalPrice(carts)} рублей</span>
+                            <span>{validPrice(totalPrice(carts))} рублей</span>
                         </div>
                     </>
                 )
@@ -51,14 +52,14 @@ const CartContent = () => {
                     </div>
                     <div className={cls.cartContent__element}>
                         <p>Стоимость:</p>
-                        <span>{totalPrice(carts)} рублей</span>
+                        <span>{validPrice(totalPrice(carts))} рублей</span>
                     </div>
 
                     {mathTotalPrice(carts, "discount") > 0 && (
                         <div className={cls.cartContent__element}>
                             <p>Скидка:</p>
                             <span>
-                                {totalDiscountPrice(carts)} {" "}
+                                {validPrice(totalDiscountPrice(carts))}{" "}
                                 рублей
                             </span>
                         </div>
@@ -76,7 +77,7 @@ const CartContent = () => {
                 <div className={cls.cartContent__element}>
                     <p>Итого к оплате:</p>
                     <span>
-                        {totalPrice(carts) - totalDiscountPrice(carts)} рублей
+                        {validPrice(`${totalPrice(carts) - totalDiscountPrice(carts)}`)} рублей
                     </span>
                 </div>
                 {window.innerWidth < 850 && (

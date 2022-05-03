@@ -8,6 +8,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
 import { useState } from "react";
+import { validPrice } from "../../utils/validPrice";
 
 const ProductInfo = ({ data = {} }) => {
     const { wishes } = useSelector((state) => state.wishes);
@@ -28,9 +29,9 @@ const ProductInfo = ({ data = {} }) => {
         material,
         id,
     } = data;
-    
+
     const [activeColor, setActiveColor] = useState(colors && colors[0]?.color);
-    const isIncludedCart = useIncluded(carts, id);
+    const isIncludedCart = useIncluded(carts, id, activeColor);
     const isIncludedWishes = useIncluded(wishes, id);
 
     const cartHandler = () => {
@@ -86,8 +87,8 @@ const ProductInfo = ({ data = {} }) => {
                 </div>
             </div>
             <div className={cls.productInfo__price}>
-                <p>{currentPrice} p</p>
-                {previousPrice && <span>{previousPrice} p</span>}
+                <p>{validPrice(currentPrice)} p</p>
+                {previousPrice && <span>{validPrice(previousPrice)} p</span>}
             </div>
             <div className={cls.productInfo__content}>
                 <h5 className={cls.productInfo__element}>О товаре:</h5>

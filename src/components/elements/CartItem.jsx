@@ -8,6 +8,7 @@ import {
 import { IoMdClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { validPrice } from "../../utils/validPrice";
 
 const CartItem = ({ data }) => {
     const {
@@ -23,15 +24,15 @@ const CartItem = ({ data }) => {
     const dispatch = useDispatch();
 
     const deleteHandler = () => {
-        dispatch(deleteCartItem({ id }));
+        dispatch(deleteCartItem({ id, pickedColor }));
     };
 
     const incrementHandler = () => {
-        dispatch(incrementCartItem({ id }));
+        dispatch(incrementCartItem({ id, pickedColor }));
     };
 
     const decrementHandler = () => {
-        dispatch(decrementCartItem({ id }));
+        dispatch(decrementCartItem({ id, pickedColor }));
     };
 
     useEffect(() => {
@@ -53,8 +54,8 @@ const CartItem = ({ data }) => {
                         Цвет: <span style={{ background: pickedColor }}></span>
                     </p>
                     <div className={cls.cartItem__wrapper__content__price}>
-                        {currentPrice} p
-                        {previousPrice && <span>{previousPrice}</span>}
+                        {validPrice(currentPrice)} p
+                        {previousPrice && <span>{validPrice(previousPrice)}</span>}
                     </div>
                     <div className={cls.cartItem__wrapper__content__count}>
                         <button onClick={decrementHandler}>

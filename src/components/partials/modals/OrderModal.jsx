@@ -56,7 +56,6 @@ const OrderModal = () => {
                 setIsEmail("invalid");
                 setIsNumber("invalid");
                 dispatch(clearCartProduct());
-                alert(`Произошла ошибка статус ${error}`)
             }
         } else {
             if(isEmail !== 'valid'){

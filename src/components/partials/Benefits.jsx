@@ -6,9 +6,10 @@ import Loader from "../elements/ui/Loader";
 import Empty from "../elements/custom/Empty";
 import { useEffect } from "react";
 import Error from "../../pages/Error";
+import { API_URL } from "../../constants/init";
 
 const Benefits = () => {
-    const { data, status, error, fetching } = useRequest('get', "app");
+    const { data, status, error, fetching } = useRequest('get', `${API_URL}app`);
 
     useEffect(() => {
         fetching();

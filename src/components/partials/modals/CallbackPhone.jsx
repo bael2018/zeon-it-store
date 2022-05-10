@@ -3,7 +3,7 @@ import cls from "../../../scss/components/partials/callbackphone.module.scss";
 import userImage from "../../../assets/img/user-outlined.png";
 import userNumber from "../../../assets/img/telephone.png";
 import { useRequest } from "../../../hooks/useRequest";
-import { regexPhone } from "../../../constants/init";
+import { API_URL, regexPhone } from "../../../constants/init";
 import { useInput } from "../../../hooks/useInput";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
@@ -15,7 +15,7 @@ const CallbackPhone = () => {
     const userPhone = useInput("");
     const dispatch = useDispatch()
 
-    const { error, fetching } = useRequest('post', "userInfo");
+    const { error, fetching } = useRequest('post', `${API_URL}userInfo`);
 
     const formHandler = async (e) => {
         e.preventDefault();

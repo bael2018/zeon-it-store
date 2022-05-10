@@ -2,12 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     carts: [],
+    cartToggle: false
 };
 
 const cartReducer = createSlice({
     name: "cart",
     initialState,
     reducers: {
+        setCartToggle: (state) => {
+            state.cartToggle = !state.cartToggle
+        },      
         setCartProducts: (state, action) => {
             state.carts.push(action.payload.cart);
         },
@@ -51,5 +55,6 @@ export const {
     decrementCartItem,
     incrementCartItem,
     clearCartProduct,
+    setCartToggle
 } = cartReducer.actions;
 export default cartReducer.reducer;

@@ -1,6 +1,11 @@
 import cls from "../../../scss/components/partials/ordermodal.module.scss";
-import { clearCartProduct } from "../../../store/reducers/cartReducer";
-import { regexEmail, regexPhone } from "../../../constants/init";
+import { clearCartProduct, setCartToggle } from "../../../store/reducers/cartReducer";
+import {
+    API_URL,
+    FIREBASE_URL,
+    regexEmail,
+    regexPhone,
+} from "../../../constants/init";
 import CustomInput from "../../elements/custom/CustomInput";
 import { useInput } from "../../../hooks/useInput";
 import { useRequest } from "../../../hooks/useRequest";
@@ -10,12 +15,15 @@ import {
     setIsModal,
     setSuccessModal,
 } from "../../../store/reducers/modalReducer";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { useDispatch } from "react-redux";
 import { MdDone } from "react-icons/md";
 
 const OrderModal = () => {
+    const { isAuth } = useSelector((state) => state.user);
+    const { cartToggle } = useSelector((state) => state.cart);
+    const uid = JSON.parse(localStorage.getItem("uid"));
     const [isValid, setIsValid] = useState(false);
     const [offer, setOffer] = useState(false);
     const [isNumber, setIsNumber] = useState("");
@@ -31,7 +39,17 @@ const OrderModal = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { error, fetching } = useRequest("post", "userInfo");
+    const { error, fetching } = useRequest("post", `${FIREBASE_URL}users/${uid}/info.json`);
+    const { fetching: delteFetching } = useRequest("delete", `${FIREBASE_URL}users/${uid}/carts.json`);
+    const { data, fetching: cartsFetching } = useRequest("get", `${FIREBASE_URL}users/${uid}/carts.json`);
+    const { fetching: apiFetching } = useRequest(
+        "post",
+        `${FIREBASE_URL}users/${uid}/orders.json`
+    );
+
+    useEffect(() => {
+        cartsFetching()
+    }, [cartToggle])
 
     const orderHandler = async (e) => {
         e.preventDefault();
@@ -45,24 +63,23 @@ const OrderModal = () => {
                 userCountry: userCountry.value,
                 userCity: userCity.value,
             };
-            
-            await fetching(body)
 
             if (error) {
-                alert(`Произошла ошибка статус ${error}`)
-            }else{
+                alert(`Произошла ошибка статус ${error}`);
+            } else {
+                if (isAuth) {
+                    await fetching(body);
+                    await apiFetching(data)
+                    await delteFetching()
+                    dispatch(setSuccessModal(true));
+                    dispatch(setCartToggle())
+                    setIsEmail("invalid");
+                    setIsNumber("invalid");
+                }
                 dispatch(setSuccessModal(true));
-
                 setIsEmail("invalid");
                 setIsNumber("invalid");
                 dispatch(clearCartProduct());
-            }
-        } else {
-            if(isEmail !== 'valid'){
-                setIsEmail("invalid");
-            }
-            if(isNumber !== 'valid'){
-                setIsNumber("invalid");
             }
         }
     };
@@ -83,17 +100,13 @@ const OrderModal = () => {
         }
 
         if (isValid) {
-            if (
-                regexEmail.test(userEmail.value)
-            ) {
+            if (regexEmail.test(userEmail.value)) {
                 setIsEmail("valid");
             } else {
                 setIsEmail("invalid");
             }
 
-            if (
-                regexPhone.test(userPhone.value)
-            ) {
+            if (regexPhone.test(userPhone.value)) {
                 setIsNumber("valid");
             } else {
                 setIsNumber("invalid");

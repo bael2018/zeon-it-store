@@ -11,6 +11,7 @@ import modalReducer from "./modalReducer";
 import newsReducer from "./newsReducer";
 import { combineReducers } from "redux";
 import cartReducer from "./cartReducer";
+import userReducer from "./userReducer";
 
 export const rootReducer = combineReducers({
     collection: collectionReducer,
@@ -23,6 +24,7 @@ export const rootReducer = combineReducers({
     search: searchReducer,
     fetch: fetchReducer,
     modal: modalReducer,
+    user: userReducer,
     cart: cartReducer,
     news: newsReducer,
 });

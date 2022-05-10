@@ -4,9 +4,10 @@ import { useRequest } from "../../../hooks/useRequest";
 import Loader from "../../elements/ui/Loader";
 import { useEffect } from "react";
 import Error from "../../../pages/Error";
+import { API_URL } from "../../../constants/init";
 
 const PublicOfferList = () => {
-    const { data, status, error, fetching } = useRequest("get", "publicOffer");
+    const { data, status, error, fetching } = useRequest("get", `${API_URL}publicoffer`);
 
     useEffect(() => {
         fetching();

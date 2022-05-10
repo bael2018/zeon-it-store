@@ -1,8 +1,7 @@
-import { API_URL } from "../constants/init";
 import { useState } from "react";
 import axios from "axios";
 
-export const useRequest = (method, endpoint) => {
+export const useRequest = (method, url) => {
     const [status, setStatus] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
@@ -13,8 +12,10 @@ export const useRequest = (method, endpoint) => {
         try {
             const response =
                 method === "get"
-                    ? await axios.get(`${API_URL}${endpoint}`)
-                    : await axios.post(`${API_URL}${endpoint}`, body);
+                    ? await axios.get(url)
+                    : method === "post" ? await axios.post(url, body)
+                    : method === "delete" ? await axios.delete(url)
+                    : await axios.patch(url, body)
             setData(response.data);
         } catch ({ response }) {
             setError(response.status);

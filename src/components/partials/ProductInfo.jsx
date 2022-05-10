@@ -1,21 +1,38 @@
-import { deleteWishlistProduct, setWishlistProducts } from "../../store/reducers/wishlistReducer";
+import {
+    deleteWishlistProduct,
+    setWishlistProducts,
+} from "../../store/reducers/wishlistReducer";
 import cls from "../../scss/components/partials/productinfo.module.scss";
-import { setCartProducts } from "../../store/reducers/cartReducer";
+import { setCartProducts, setCartToggle } from "../../store/reducers/cartReducer";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useIncluded } from "../../hooks/useIncluded";
 import { IoBagOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../constants/paths";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validPrice } from "../../utils/validPrice";
+import { useRequest } from "../../hooks/useRequest";
+import { FIREBASE_URL } from "../../constants/init";
+import { toArray } from "../../utils/toArray";
 
 const ProductInfo = ({ data = {} }) => {
     const { wishes } = useSelector((state) => state.wishes);
-    const { carts } = useSelector((state) => state.cart);
+    const { isAuth } = useSelector((state) => state.user);
+    const { carts, cartToggle } = useSelector((state) => state.cart);
+    const uid = JSON.parse(localStorage.getItem("uid"));
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { data: cartData, fetching: fetchingData } = useRequest(
+        "get",
+        `${FIREBASE_URL}users/${uid}/carts.json`
+        );
+
+    useEffect(() => {
+        fetchingData()
+    }, [cartToggle])
+    
     const {
         title,
         article,
@@ -31,23 +48,33 @@ const ProductInfo = ({ data = {} }) => {
     } = data;
 
     const [activeColor, setActiveColor] = useState(colors && colors[0]?.color);
-    const isIncludedCart = useIncluded(carts, id, activeColor);
+    const isIncludedCart = useIncluded(isAuth ? toArray(cartData) : carts, id, activeColor);
     const isIncludedWishes = useIncluded(wishes, id);
 
-    const cartHandler = () => {
-        if (activeColor !== "") {
-            dispatch(
-                setCartProducts({
-                    cart: {
-                        ...data,
-                        pickedColor: activeColor,
-                        discount: previousPrice
-                            ? previousPrice - currentPrice
-                            : 0,
-                        count: 1,
-                    },
-                })
-            );
+    const { fetching } = useRequest(
+        "post",
+        `${FIREBASE_URL}users/${uid}/carts.json`
+    );
+
+    const cartHandler = async () => {
+        const body = {
+            ...data,
+            pickedColor: activeColor,
+            discount: previousPrice ? previousPrice - currentPrice : 0,
+            count: 1,
+        };
+
+        if (isAuth) {
+            await fetching(body);
+            dispatch(setCartToggle())
+        } else {
+            if (activeColor !== "") {
+                dispatch(
+                    setCartProducts({
+                        cart: body,
+                    })
+                );
+            }
         }
     };
 
@@ -64,7 +91,11 @@ const ProductInfo = ({ data = {} }) => {
     };
 
     return (
-        <div className={`${cls.productInfo} ${data?.productImages?.length === 1 && cls.productInfo_active}`}>
+        <div
+            className={`${cls.productInfo} ${
+                data?.productImages?.length === 1 && cls.productInfo_active
+            }`}
+        >
             <h4>{title}</h4>
             <div className={cls.productInfo__wrapper}>
                 <h5 className={cls.productInfo__element}>Артикул:</h5>
@@ -120,7 +151,10 @@ const ProductInfo = ({ data = {} }) => {
                 )}
 
                 {isIncludedWishes ? (
-                    <button className={cls.heart} onClick={() => dispatch(deleteWishlistProduct({ id }))}>
+                    <button
+                        className={cls.heart}
+                        onClick={() => dispatch(deleteWishlistProduct({ id }))}
+                    >
                         <AiFillHeart />
                     </button>
                 ) : (

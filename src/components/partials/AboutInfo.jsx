@@ -5,9 +5,10 @@ import { useRequest } from "../../hooks/useRequest";
 import Loader from "../elements/ui/Loader";
 import { useEffect } from "react";
 import Error from "../../pages/Error";
+import { API_URL } from "../../constants/init";
 
 const AboutInfo = () => {
-    const { data, status, error, fetching } = useRequest('get', "app");
+    const { data, status, error, fetching } = useRequest('get', `${API_URL}app`);
 
     useEffect(() => {
         fetching();

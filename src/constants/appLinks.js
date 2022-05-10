@@ -9,5 +9,7 @@ export const appLinks = {
     SEARCH: "Поиск",
     REDIRECT: "Пуста",
     WISHLIST: "Избранное",
-    ERROR: "Ошибка"
+    ERROR: "Ошибка",
+    AUTH: 'Авторизация',
+    ORDERS: 'Заказы'
 }

@@ -13,10 +13,11 @@ import { useBreads } from "../../hooks/useBreads";
 import { FaTelegramPlane } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { API_URL } from "../../constants/init";
 
 const Footer = () => {
     const navigate = useNavigate();
-    const { data, fetching } = useRequest('get', "app");
+    const { data, fetching } = useRequest('get', `${API_URL}app`);
     const { dispatcher } = useBreads([]);
 
     useEffect(() => {

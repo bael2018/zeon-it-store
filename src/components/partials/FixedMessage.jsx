@@ -1,7 +1,7 @@
 import { setInitModal, setIsModal } from "../../store/reducers/modalReducer";
 import cls from "../../scss/components/partials/fixedmessage.module.scss";
 import message from "../../assets/img/fixedMessage.png";
-import { navbar_target } from "../../constants/init";
+import { API_URL, navbar_target } from "../../constants/init";
 import { useRequest } from "../../hooks/useRequest";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaTelegramPlane } from "react-icons/fa";
@@ -17,7 +17,7 @@ const FixedMessage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const { data, fetching } = useRequest("get", "app");
+    const { data, fetching } = useRequest("get", `${API_URL}app`);
 
     useEffect(() => {
         fetching();

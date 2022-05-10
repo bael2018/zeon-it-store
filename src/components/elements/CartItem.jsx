@@ -4,11 +4,14 @@ import {
     decrementCartItem,
     deleteCartItem,
     incrementCartItem,
+    setCartToggle,
 } from "../../store/reducers/cartReducer";
-import { IoMdClose } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { validPrice } from "../../utils/validPrice";
+import { IoMdClose } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useRequest } from "../../hooks/useRequest";
+import { FIREBASE_URL } from "../../constants/init";
 
 const CartItem = ({ data }) => {
     const {
@@ -19,20 +22,60 @@ const CartItem = ({ data }) => {
         previousPrice,
         productImages,
         id,
+        pid,
         count,
     } = data;
+
     const dispatch = useDispatch();
+    const { isAuth } = useSelector((state) => state.user);
+    const uid = JSON.parse(localStorage.getItem("uid"));
 
-    const deleteHandler = () => {
-        dispatch(deleteCartItem({ id, pickedColor }));
+    const { fetching } = useRequest(
+        "patch",
+        `${FIREBASE_URL}users/${uid}/carts/${pid}.json`
+    );
+
+    const { fetching: deleteFetching } = useRequest(
+        "delete",
+        `${FIREBASE_URL}users/${uid}/carts/${pid}.json`
+    );
+
+    const deleteHandler = async () => {
+        if(isAuth){
+            await deleteFetching()
+                dispatch(setCartToggle())
+        }else{
+            dispatch(deleteCartItem({ id, pickedColor }));
+        }
     };
 
-    const incrementHandler = () => {
-        dispatch(incrementCartItem({ id, pickedColor }));
+    const incrementHandler = async () => {
+        if(isAuth){
+            const body = {
+                count: count + 1
+            }
+            await fetching(body)
+            dispatch(setCartToggle())
+        }else{
+            dispatch(incrementCartItem({ id, pickedColor }));
+        }
     };
 
-    const decrementHandler = () => {
-        dispatch(decrementCartItem({ id, pickedColor }));
+    const decrementHandler = async () => {
+        if(isAuth){
+            if(count === 1){
+                await deleteFetching()
+                dispatch(setCartToggle())
+            }else{
+                const body = {
+                    count: count - 1
+                }
+                await fetching(body)
+                dispatch(setCartToggle())
+            }
+        }else{
+            dispatch(decrementCartItem({ id, pickedColor }));
+        }
     };
 
     useEffect(() => {
@@ -45,7 +88,7 @@ const CartItem = ({ data }) => {
         <div className={cls.cartItem}>
             <div className={cls.cartItem__wrapper}>
                 <div className={cls.cartItem__wrapper__image}>
-                    <img src={productImages[0].image} alt="картинка товара" />
+                    <img src={productImages[0]?.image} alt="картинка товара" />
                 </div>
                 <div className={cls.cartItem__wrapper__content}>
                     <h4>{title}</h4>

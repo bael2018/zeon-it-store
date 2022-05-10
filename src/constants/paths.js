@@ -11,4 +11,6 @@ export const paths = {
     HELP: '/help',
     PUBLIC_OFFER: '/public-offer',
     SINGLE_PRODUCT: '/collection/:title/:id',
+    AUTH: "/auth",
+    ORDERS: '/orders'
 }

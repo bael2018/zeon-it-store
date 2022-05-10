@@ -11,6 +11,8 @@ import PublicOffer from "../pages/PublicOffer";
 import Search from "../pages/Search";
 import SingleCollection from "../pages/SingleCollection";
 import SingleProduct from "../pages/SingleProduct";
+import Auth from "../pages/Auth";
+import Orders from "../pages/Orders";
 
 export const appRoutes = [
     {
@@ -74,4 +76,14 @@ export const appRoutes = [
         element: <SingleProduct />,
         path: paths.SINGLE_PRODUCT,
     },
+    {
+        id: 13,
+        element: <Auth />,
+        path: paths.AUTH,
+    },
+    {
+        id: 14,
+        element: <Orders />,
+        path: paths.ORDERS,
+    }
 ];

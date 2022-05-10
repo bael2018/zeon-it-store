@@ -6,9 +6,13 @@ import { appLinks } from "../constants/appLinks";
 import { useEffect } from "react";
 import NewArrivals from "../components/partials/NewArrivals";
 import Collection from "../components/partials/Collection";
+import { useBreads } from "../hooks/useBreads";
 
 const Main = () => {
+    const { dispatcher } = useBreads([]);
+
     useEffect(() => {
+        dispatcher();
         document.title = appLinks.MAIN;
     }, []);
 

@@ -1,0 +1,18 @@
+.order{
+    display: flex;
+    gap: 1%;
+    flex-wrap: wrap;
+
+    >h4{
+        color: #1D1D1B;
+        margin: 0;
+        font-size: 22px;
+        margin-bottom: 20px;
+        width: 100%;
+        text-align: center;
+
+        @media screen and (max-width: 500px){
+            font-size: 18px;
+        }
+    }
+}

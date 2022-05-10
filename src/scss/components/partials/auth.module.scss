@@ -1,0 +1,52 @@
+.auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &_btn{
+        color: white;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        padding: 6px 15px;
+        margin-top: 10px;
+        pointer-events: none;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
+
+        &_active{
+            pointer-events: all;
+            background: #1D1D1B;
+        }
+
+        @media screen and (max-width: 400px){
+            width: 100%;
+            padding: 10px;
+        }
+    }
+
+    >div{
+        width: 50%;
+
+        @media screen and (max-width: 750px){
+            width: 70%;
+        }
+
+        @media screen and (max-width: 450px){
+            width: 100%;
+        }
+
+        form{
+            text-align: center;
+        }
+
+        >p{
+            color: rgb(41, 41, 41);
+            text-align: center;
+
+            span{
+                color: rgb(0, 162, 255);
+                cursor: pointer;
+            }
+        }
+    }
+}

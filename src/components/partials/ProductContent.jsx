@@ -1,6 +1,6 @@
 import ImagesCarousel from '../partials/carosel/ImagesCarousel'
 import { useRequest } from "../../hooks/useRequest";
-import { endpoints } from "../../constants/init";
+import { API_URL, endpoints } from "../../constants/init";
 import ProductWrapper from "./ProductWrapper";
 import { useParams } from "react-router-dom";
 import ProductImages from "./ProductImages";
@@ -13,7 +13,7 @@ const ProductContent = () => {
     const { id } = useParams();
     const { data, status, error, fetching } = useRequest(
         "get",
-        `${endpoints.PRODUCTS}?title_like=${id}`
+        `${API_URL}${endpoints.PRODUCTS}?title_like=${id}`
     );
 
     useEffect(() => {

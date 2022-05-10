@@ -28,7 +28,10 @@
     }
 
     &__contact{
-        span{
+        display: flex;
+        align-items: center;
+
+        > span{
             font-size: 17px;
             line-height: 21px;
             color: #979797;
@@ -41,5 +44,20 @@
                 color: #393939;
             }
         }
-    }
+
+        div{
+            margin-left: 5px;
+
+            span{
+                cursor: pointer;
+                font-size: 20px;
+                margin-left: 5px;
+            }
+
+            a{
+                color: #646464;
+                font-size: 21px;
+            }
+        }
+    }   
 }

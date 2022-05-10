@@ -3,6 +3,7 @@ import "../../../scss/components/partials/carousel.scss";
 import { useRequest } from "../../../hooks/useRequest";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Empty from "../../elements/custom/Empty";
+import { API_URL } from "../../../constants/init";
 import Loader from "../../elements/ui/Loader";
 import { useEffect } from "react";
 import "swiper/css/pagination";
@@ -11,7 +12,7 @@ import Error from "../../../pages/Error";
 SwiperCore.use([Autoplay]);
 
 const MainCarousel = () => {
-    const { data, status, error, fetching } = useRequest('get', "app");
+    const { data, status, error, fetching } = useRequest('get', `${API_URL}app`);
 
     useEffect(() => {
         fetching();

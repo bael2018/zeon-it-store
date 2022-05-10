@@ -10,8 +10,10 @@ import {
 import { useState } from "react";
 import { validPrice } from "../../utils/validPrice";
 
-const CartContent = () => {
+const CartContent = ({ data }) => {
     const { carts } = useSelector((state) => state.cart);
+    const { isAuth } = useSelector((state) => state.user);
+    const base = isAuth ? data : carts
     const [isVisible, setIsVisible] = useState(false);
     const dispatch = useDispatch();
 
@@ -29,13 +31,13 @@ const CartContent = () => {
                         <div className={cls.cartContent__element}>
                             <p>Общее количество:</p>
                             <span>
-                                {mathTotalCount(carts)} линеек (
-                                {mathTotalCount(carts) * 5} шт.)
+                                {mathTotalCount(base)} линеек (
+                                {mathTotalCount(base) * 5} шт.)
                             </span>
                         </div>
                         <div className={cls.cartContent__element}>
                             <p>Стоимость:</p>
-                            <span>{validPrice(totalPrice(carts))} рублей</span>
+                            <span>{validPrice(totalPrice(base))} рублей</span>
                         </div>
                     </>
                 )
@@ -44,22 +46,22 @@ const CartContent = () => {
                     <h4>Сумма заказа</h4>
                     <div className={cls.cartContent__element}>
                         <p>Количество линеек:</p>
-                        <span>{mathTotalCount(carts)} шт</span>
+                        <span>{mathTotalCount(base)} шт</span>
                     </div>
                     <div className={cls.cartContent__element}>
                         <p>Количество товаров:</p>
-                        <span>{mathTotalCount(carts) * 5} шт</span>
+                        <span>{mathTotalCount(base) * 5} шт</span>
                     </div>
                     <div className={cls.cartContent__element}>
                         <p>Стоимость:</p>
-                        <span>{validPrice(totalPrice(carts))} рублей</span>
+                        <span>{validPrice(totalPrice(base))} рублей</span>
                     </div>
 
-                    {mathTotalPrice(carts, "discount") > 0 && (
+                    {mathTotalPrice(base, "discount") > 0 && (
                         <div className={cls.cartContent__element}>
                             <p>Скидка:</p>
                             <span>
-                                {validPrice(totalDiscountPrice(carts))}{" "}
+                                {validPrice(totalDiscountPrice(base))}{" "}
                                 рублей
                             </span>
                         </div>
@@ -77,7 +79,7 @@ const CartContent = () => {
                 <div className={cls.cartContent__element}>
                     <p>Итого к оплате:</p>
                     <span>
-                        {validPrice(`${totalPrice(carts) - totalDiscountPrice(carts)}`)} рублей
+                        {validPrice(`${totalPrice(base) - totalDiscountPrice(base)}`)} рублей
                     </span>
                 </div>
                 {window.innerWidth < 850 && (

@@ -10,13 +10,14 @@ import { paths } from "../../constants/paths";
 import { IoMdClose } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import { useEffect } from "react";
+import { API_URL } from "../../constants/init";
 
 const MobileNavbar = () => {
     const { dispatcher } = useBreads([]);
     const { isVisible } = useSelector((state) => state.search);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { data, fetching } = useRequest("get", "app");
+    const { data, fetching } = useRequest("get", `${API_URL}app`);
 
     useEffect(() => {
         fetching();
